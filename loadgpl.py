@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def load_rgb(palette_loc, header_size=3):
     palette_raw = open(palette_loc)  # Open the palette file.
     palette_lines = palette_raw.readlines()  # Read each line of the file.

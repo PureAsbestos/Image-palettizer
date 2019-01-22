@@ -20,8 +20,8 @@ def split_deltaE(image, color2, *args, **kwargs):
     image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))
     print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
     image_output_sliced = [
-    deltaE(image_sec, color2, *args, **kwargs)
-    for image_sec in tqdm(image_sliced, desc='Quantizing')
+        deltaE(image_sec, color2, *args, **kwargs)
+        for image_sec in tqdm(image_sliced, desc='Quantizing')
     ]
     image_output = np.concatenate(image_output_sliced)
     return image_output
@@ -54,7 +54,8 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
                 distances[row, col, pal_index] = 0
                 for triple in dither_matrix:
                     try:
-                        distances[row + triple[1], col + triple[0], pal_index] += quant_error[row, col] * triple[2]
+                        distances[row + triple[1], col +
+                                  triple[0], pal_index] += quant_error[row, col] * triple[2]
                     except IndexError:
                         pass
         image_indexed = distances.argmin(axis=2)

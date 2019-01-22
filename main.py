@@ -65,7 +65,10 @@ else:
 t0 = time()
 
 print('Processing...')
-imwrite('output/output-' + str(t0) + '.png', palettizer.palettize(palette, image, dither_matrix, use_ordered))
+
+imwrite('output/output-' + str(t0) + '.png',
+        palettizer.palettize(palette, image, dither_matrix, use_ordered))
+
 qp.clear()
 
 print('\nDone!\n')

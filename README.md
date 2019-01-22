@@ -13,7 +13,7 @@ Requires Python 3 and the following packages:
 
 
 ## Installation
-Just download the repository and unzip it, or clone with `git clone`.
+Just download the repository and unzip it, or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`.
 
 
 ## Usage

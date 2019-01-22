@@ -19,7 +19,7 @@ Just download the repository and unzip it, or clone with `git clone https://gith
 
 
 ## Usage
-To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py, you’ll get several prompts, asking specifically what you want to do. You can drag and drop files onto the terminal to provide file paths when prompted (remember to hit *Enter*!). The output image will be saved in the subdirectory `./output` as `output-TIMESTAMP.png`. See *Features* for specific capabilities.
+To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py, you’ll get several prompts, asking specifically what you want to do. You can drag and drop files onto the terminal to provide file paths when prompted (remember to hit *Enter*). The output image will be saved in the subdirectory `./output` as `output-TIMESTAMP.png`. See *Features* for specific capabilities.
 ### Example
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](http://pixeljoint.com/forum/forum_posts.asp?TID=12795)
@@ -37,3 +37,4 @@ Besides the core features that have been discussed, this program offers:
 - Add the ability to run with command-line arguments
 - Add a Bayer matrix generator
 - Add the ability to work with multiple images, videos, and animated gifs (encode videos as gifs?)
+- Add an optimized color palette generator

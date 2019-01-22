@@ -1,5 +1,6 @@
 # Image Palettizer
 ![](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg)
+
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run of the mill graphics editor. Just run main.py, and follow the prompts.
 
 

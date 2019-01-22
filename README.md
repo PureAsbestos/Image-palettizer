@@ -29,7 +29,7 @@ Besides the core features that have been discussed, this program offers:
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
 
 
-## TODO
+## Todo
 - Improve code commentary
 - Add the ability to run with command-line arguments
 - Add a Bayer matrix generator

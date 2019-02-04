@@ -66,6 +66,9 @@ t0 = time()
 
 print('Processing...')
 
+if not os.path.exists('./output'):
+    os.mkdir('./output')
+
 imwrite('output/output-' + str(t0) + '.png',
         palettizer.palettize(palette, image, dither_matrix, use_ordered))
 

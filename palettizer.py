@@ -16,7 +16,7 @@ def index2rgb(arr, pal):
 
 
 def split_deltaE(image, color2, *args, **kwargs):
-    split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
+    split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
     image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))
     print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
     image_output_sliced = [

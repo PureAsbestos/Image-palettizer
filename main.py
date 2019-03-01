@@ -5,7 +5,6 @@ import numpy as np
 from dithermaps import *
 from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
-import time
 import os
 
 VERSION = 'v2.1.0'

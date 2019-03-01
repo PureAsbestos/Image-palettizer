@@ -12,20 +12,10 @@ sg.SetOptions(button_color=('black','#DDDDDD'))
 
 
 def do_palettize(palette, image, dither_matrix, use_ordered):
-    # Load image into temporary .npy file
-    image_shape = image.shape
-    file = TemporaryFile()
-    np.save(file, image)
-    del image
-    image = np.memmap(file, mode='w+', offset=128, shape=image_shape)
-    del image_shape
 
     # For if image is grayscale
     if len(image.shape) == 2:
         image = image[..., np.newaxis].repeat(3, axis=2)
-
-    if not os.path.exists('./output'):
-        os.mkdir('./output')
 
     return palettizer.palettize(palette, image, dither_matrix, use_ordered)
 

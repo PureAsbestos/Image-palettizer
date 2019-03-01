@@ -81,7 +81,6 @@ while True:
     else:
         window.FindElement('diffusion combo').Update(disabled=True)
 
-    print(event)
     if event == 'Submit':
         palette_loc = values['palette']
         image_loc = values['image']
@@ -98,16 +97,12 @@ while True:
         except Exception as e:
             sg.PopupOK('Error processing palette: ' + str(e), title='ERROR', text_color='red')
             palette = None
-        else:
-            print('palette OK')
 
         try:
             image = imread(image_loc)
         except Exception as e:
             sg.PopupOK('Error processing image: ' + str(e), title='ERROR', text_color='red')
             image = None
-        else:
-            print('image OK')
 
         if not (palette is None) and not (image is None):
             output_image = do_palettize(palette, image, dither_matrix, use_ordered)

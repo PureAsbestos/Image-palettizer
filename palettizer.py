@@ -63,7 +63,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
         image_quant2 = np.argpartition(distances, 1)[..., 1]
         image_indexed = np.zeros(distances.shape[:2]).astype('intp')
         for row in range(distances.shape[0]):
-            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0]):
+            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0], 'single'):
                 break
             for col in range(distances.shape[1]):
                 near_color = image_quantized[row, col]

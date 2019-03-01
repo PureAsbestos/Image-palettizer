@@ -60,7 +60,7 @@ layout = [[sg.Text('GPL palette', size=(15, 1), justification='right'), sg.Input
           [sg.Text('Dithering')],
           [sg.Column([[no_dither_radio, ordered_radio, diffusion_radio]])],
           [sg.Column([[ordered_combo, diffusion_combo]])],
-          [sg.Submit()]]
+          [sg.Button('Apply', enable_events=True)]]
 
 window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
 
@@ -81,7 +81,7 @@ while True:
     else:
         window.FindElement('diffusion combo').Update(disabled=True)
 
-    if event == 'Submit':
+    if event == 'Apply':
         palette_loc = values['palette']
         image_loc = values['image']
         use_ordered = values['ordered radio']

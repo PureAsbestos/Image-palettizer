@@ -1,7 +1,7 @@
 import numpy as np
 from colorspacious import deltaE
 from dithermaps import DIFFUSION_MAPS, get_bayer_matrix
-from tqdm import tqdm, trange
+import PySimpleGUI as sg
 from psutil import virtual_memory
 
 
@@ -19,7 +19,7 @@ def split_deltaE(image, color2, *args, **kwargs):
     print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
     image_output_sliced = [
         deltaE(image_sec, color2, *args, **kwargs)
-        for image_sec in tqdm(image_sliced, desc='Quantizing')
+        for image_sec in image_sliced
     ]
     image_output = np.concatenate(image_output_sliced)
     return image_output
@@ -44,7 +44,9 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
     # Dithering
     if (not use_ordered) and dither_matrix in DIFFUSION_MAPS.values():
         quant_error = distances.min(axis=2)
-        for row in trange(distances.shape[0], desc='Dithering'):
+        for row in range(distances.shape[0]):
+            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0], 'single'):
+                break
             for col in range(distances.shape[1]):
                 quant_error[row, col] = distances[row, col].min()
                 image_quantized[row, col] = distances[row, col].argmin()
@@ -60,7 +62,9 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
     elif use_ordered:
         image_quant2 = np.argpartition(distances, 1)[..., 1]
         image_indexed = np.zeros(distances.shape[:2]).astype('intp')
-        for row in trange(distances.shape[0], desc='Dithering'):
+        for row in range(distances.shape[0]):
+            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0]):
+                break
             for col in range(distances.shape[1]):
                 near_color = image_quantized[row, col]
                 far_color = image_quant2[row, col]

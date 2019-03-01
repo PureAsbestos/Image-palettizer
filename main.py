@@ -5,7 +5,6 @@ import numpy as np
 from dithermaps import *
 from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
-import os
 
 VERSION = 'v2.1.0'
 sg.SetOptions(button_color=('black','#DDDDDD'))

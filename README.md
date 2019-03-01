@@ -9,8 +9,7 @@ Requires Python 3 and the following packages:
 - numpy
 - imageio
 - colorspacious
-- tqdm
-- qprompt
+- PySimpleGUI
 - psutil
 
 

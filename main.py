@@ -52,7 +52,7 @@ def image_popup(image):
     temp = NamedTemporaryFile(suffix='.gif', mode='wb', delete=False)
     temp_name = temp.name
     imwrite(temp, temp_img, format='gif')
-    layout = [[sg.Image(filename=temp_name, size=(750,750))],
+    layout = [[sg.Image(filename=temp_name, size=(512,512))],
               [sg.Text('Save location', justification='right'), sg.InputText(do_not_clear=True, key='file'), sg.SaveAs()],
               [sg.Save(), sg.Cancel()]]
 

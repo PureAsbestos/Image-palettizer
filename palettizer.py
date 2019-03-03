@@ -17,6 +17,13 @@ def counter(iterable, message='', id='single'):
         sg.OneLineProgressMeter(message, i+1, len(iterable), id)
         yield val
 
+def counter(iterable, message='', id='single'):
+    for i, val in enumerate(iterable):
+        if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):
+            break
+        yield val
+
+
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
     image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))

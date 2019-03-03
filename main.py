@@ -5,6 +5,7 @@ import numpy as np
 from dithermaps import *
 from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
+import os
 
 VERSION = 'v2.1.0'
 sg.SetOptions(button_color=('black','#DDDDDD'))
@@ -19,13 +20,39 @@ def do_palettize(palette, image, dither_matrix, use_ordered):
     return palettizer.palettize(palette, image, dither_matrix, use_ordered)
 
 
+def resize_img(image, side_length):
+    h, w = image.shape[:2]
+    max_wh = max(w, h)
+
+    if h > w:
+        height = side_length
+        width = int((side_length / h) * w)
+    else:
+        width = side_length
+        height = int((side_length / w) * h)
+
+    if side_length > max_wh:
+        reps = max(width, height) // max_wh
+        img = np.repeat(image, reps, axis=1)  # X
+        img = np.repeat(img, reps, axis=0)  # Y
+    elif side_length == max_wh:
+        img = image
+    else:
+        arr = np.array_split(image, width, axis=1)  # X
+        arr = [np.mean(chunk, axis=1, keepdims=True) for chunk in arr]  # X
+        arr = np.concatenate(arr, axis=1)  # X
+        arr = np.array_split(arr, height, axis=0)  # Y
+        arr = [np.mean(chunk, axis=0, keepdims=True) for chunk in arr]  # Y
+        img = np.concatenate(arr, axis=0)  # Y
+    return img
+
+
 def image_popup(image):
-    temp_img = np.repeat(image, 750//image.shape[0], axis=0)
-    temp_img = np.repeat(temp_img, 750//image.shape[0], axis=1)
+    temp_img = resize_img(image, 512)
     temp = NamedTemporaryFile(suffix='.gif', mode='wb', delete=False)
     temp_name = temp.name
     imwrite(temp, temp_img, format='gif')
-    layout = [[sg.Image(filename=temp_name, size=(None, 750))],
+    layout = [[sg.Image(filename=temp_name, size=(750,750))],
               [sg.Text('Save location', justification='right'), sg.InputText(do_not_clear=True, key='file'), sg.SaveAs()],
               [sg.Save(), sg.Cancel()]]
 
@@ -104,7 +131,12 @@ while True:
             image = None
 
         if not (palette is None) and not (image is None):
-            output_image = do_palettize(palette, image, dither_matrix, use_ordered)
-            image_popup(output_image)
+            try:
+                output_image = do_palettize(palette, image, dither_matrix, use_ordered)
+            except Exception as e:
+                sg.PopupOK('Error processing image: ' + str(e), title='ERROR', text_color='red')
+                image = None
+            else:
+                image_popup(output_image)
 
 window.Close()

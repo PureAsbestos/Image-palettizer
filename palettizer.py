@@ -12,6 +12,10 @@ def index2rgb(arr, pal):
     out = np.stack(channels, axis=-1)
     return out
 
+def counter(iterable, message='', id='single'):
+    for i, val in enumerate(iterable):
+        sg.OneLineProgressMeter(message, i+1, len(iterable), id)
+        yield val
 
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
@@ -19,8 +23,8 @@ def split_deltaE(image, color2, *args, **kwargs):
     # print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
     image_output_sliced = [
         deltaE(image_sec, color2, *args, **kwargs)
-        for image_sec in image_sliced
-    ]
+        for image_sec in counter(image_sliced, 'Quantizing...')
+        ]
     image_output = np.concatenate(image_output_sliced)
     return image_output
 
@@ -45,7 +49,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
     if (not use_ordered) and dither_matrix in DIFFUSION_MAPS.values():
         quant_error = distances.min(axis=2)
         for row in range(distances.shape[0]):
-            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0], 'single'):
+            if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
                 break
             for col in range(distances.shape[1]):
                 quant_error[row, col] = distances[row, col].min()
@@ -63,7 +67,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
         image_quant2 = np.argpartition(distances, 1)[..., 1]
         image_indexed = np.zeros(distances.shape[:2]).astype('intp')
         for row in range(distances.shape[0]):
-            if not sg.OneLineProgressMeter('Processing image...', row+1, distances.shape[0], 'single'):
+            if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
                 break
             for col in range(distances.shape[1]):
                 near_color = image_quantized[row, col]

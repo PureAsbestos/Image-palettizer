@@ -11,6 +11,10 @@ VERSION = 'v2.1.0'
 sg.SetOptions(button_color=('black','#DDDDDD'))
 
 
+def error_popup(e, prefix='Error: '):
+    sg.PopupOK(prefix + str(e), title='ERROR', text_color='red')
+
+
 def do_palettize(palette, image, dither_matrix, use_ordered):
 
     # For if image is grayscale
@@ -44,7 +48,7 @@ def resize_img(image, side_length):
         arr = np.array_split(arr, height, axis=0)  # Y
         arr = [np.mean(chunk, axis=0, keepdims=True) for chunk in arr]  # Y
         img = np.concatenate(arr, axis=0)  # Y
-    return img
+    return img.astype(np.uint8)
 
 
 def image_popup(image):
@@ -121,20 +125,20 @@ while True:
         try:
             palette = loadgpl.load_rgb(palette_loc)
         except Exception as e:
-            sg.PopupOK('Error processing palette: ' + str(e), title='ERROR', text_color='red')
+            error_popup(e, 'Error loading palette: ')
             palette = None
 
         try:
             image = imread(image_loc)
         except Exception as e:
-            sg.PopupOK('Error processing image: ' + str(e), title='ERROR', text_color='red')
+            error_popup(e, 'Error loading image: ')
             image = None
 
         if not (palette is None) and not (image is None):
             try:
                 output_image = do_palettize(palette, image, dither_matrix, use_ordered)
             except Exception as e:
-                sg.PopupOK('Error processing image: ' + str(e), title='ERROR', text_color='red')
+                error_popup(e, 'Error during palettization: ')
                 image = None
             else:
                 image_popup(output_image)

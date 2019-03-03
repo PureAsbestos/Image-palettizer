@@ -12,19 +12,18 @@ def index2rgb(arr, pal):
     out = np.stack(channels, axis=-1)
     return out
 
-def counter(iterable, message='', id='single'):
-    for i, val in enumerate(iterable):
-        sg.OneLineProgressMeter(message, i+1, len(iterable), id)
-        yield val
+# if not sg.OneLineProgressMeter('Quantizing...', i+1, len(image_sliced), 'single'):
+#     break
 
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
     image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))
     # print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
-    image_output_sliced = [
-        deltaE(image_sec, color2, *args, **kwargs)
-        for image_sec in counter(image_sliced, 'Quantizing...')
-        ]
+    image_output_sliced = []
+    for i, image_sec in zip(range(len(image_sliced)), image_sliced):
+        if not sg.OneLineProgressMeter('Quantizing...', i+1, len(image_sliced), 'single'):
+            break
+        image_output_sliced.append(deltaE(image_sec, color2, *args, **kwargs))
     image_output = np.concatenate(image_output_sliced)
     return image_output
 

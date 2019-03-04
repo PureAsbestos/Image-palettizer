@@ -15,24 +15,20 @@ def index2rgb(arr, pal):
 
 def counter(iterable, message='', id='single'):
     for i, val in enumerate(iterable):
+        yield val
         if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):
             break
-        yield val
 
 
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
     splits = np.ceil(image.shape[0] * image.shape[1] / split_val)
-    if splits > 1:
-        image_sliced = np.array_split(image, splits)
-        # print('\nImage will be split into', len(image_sliced)), 'pieces.\n')
-        image_output_sliced = [
-            deltaE(image_sec, color2, *args, **kwargs)
-            for image_sec in counter(image_sliced, 'Quantizing...')
-            ]
-        return np.concatenate(image_output_sliced)
-    else:
-        return deltaE(image, color2, *args, **kwargs)
+    image_sliced = np.array_split(image, splits)
+    image_output_sliced = [
+        deltaE(image_sec, color2, *args, **kwargs)
+        for image_sec in counter(image_sliced, 'Quantizing...')
+        ]
+    return np.concatenate(image_output_sliced)
 
 
 def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_ordered=False):

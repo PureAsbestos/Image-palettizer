@@ -12,20 +12,27 @@ def index2rgb(arr, pal):
     out = np.stack(channels, axis=-1)
     return out
 
-# if not sg.OneLineProgressMeter('Quantizing...', i+1, len(image_sliced), 'single'):
-#     break
+
+def counter(iterable, message='', id='single'):
+    for i, val in enumerate(iterable):
+        if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):
+            break
+        yield val
+
 
 def split_deltaE(image, color2, *args, **kwargs):
-    split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
-    image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))
-    # print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
-    image_output_sliced = []
-    for i, image_sec in zip(range(len(image_sliced)), image_sliced):
-        if not sg.OneLineProgressMeter('Quantizing...', i+1, len(image_sliced), 'single'):
-            break
-        image_output_sliced.append(deltaE(image_sec, color2, *args, **kwargs))
-    image_output = np.concatenate(image_output_sliced)
-    return image_output
+    split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
+    splits = np.ceil(image.shape[0] * image.shape[1] / split_val)
+    if splits > 1:
+        image_sliced = np.array_split(image, splits)
+        # print('\nImage will be split into', len(image_sliced)), 'pieces.\n')
+        image_output_sliced = [
+            deltaE(image_sec, color2, *args, **kwargs)
+            for image_sec in counter(image_sliced, 'Quantizing...')
+            ]
+        return np.concatenate(image_output_sliced)
+    else:
+        return deltaE(image, color2, *args, **kwargs)
 
 
 def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_ordered=False):

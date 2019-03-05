@@ -22,7 +22,7 @@ def counter(iterable, message='', id='single'):
 
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
-    splits = np.ceil(image.shape[0] * image.shape[1] / split_val)
+    splits = np.ceil(len(color2) * image.shape[0] * image.shape[1] / split_val)
     image_sliced = np.array_split(image, splits)
     image_output_sliced = [
         deltaE(image_sec, color2, *args, **kwargs)

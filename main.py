@@ -24,16 +24,24 @@ def do_palettize(palette, image, dither_matrix, use_ordered):
     return palettizer.palettize(palette, image, dither_matrix, use_ordered)
 
 
+shuffle = np.random.RandomState(seed=42).permutation
+def get_div_points(a, b):
+        Neach_section, extras = divmod(a, b)
+        section_sizes = shuffle(extras * [Neach_section + 1] +
+								(b - extras) * [Neach_section])
+        return np.array(section_sizes, dtype=np.intp).cumsum()
+
+
 def resize_img(image, side_length):
     h, w = image.shape[:2]
     max_wh = max(w, h)
 
     if h > w:
         height = side_length
-        width = int((side_length / h) * w)
+        width = int(w * side_length / h)
     else:
         width = side_length
-        height = int((side_length / w) * h)
+        height = int(h * side_length / w)
 
     if side_length > max_wh:
         reps = max(width, height) // max_wh
@@ -42,13 +50,15 @@ def resize_img(image, side_length):
     elif side_length == max_wh:
         img = image
     else:
-        arr = np.array_split(image, width, axis=1)  # X
+        arr = np.array_split(image, get_div_points(w, width), axis=1)  # X
         arr = [np.mean(chunk, axis=1, keepdims=True) for chunk in arr]  # X
         arr = np.concatenate(arr, axis=1)  # X
-        arr = np.array_split(arr, height, axis=0)  # Y
+
+        arr = np.array_split(arr, get_div_points(h, height), axis=0)  # Y
         arr = [np.mean(chunk, axis=0, keepdims=True) for chunk in arr]  # Y
-        img = np.concatenate(arr, axis=0)  # Y
-    return img.astype(np.uint8)
+        img = np.concatenate(arr, axis=0).astype(np.uint8)  # Y
+
+    return img
 
 
 def image_popup(image):
@@ -88,10 +98,9 @@ diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=
 layout = [[sg.Text('GPL palette', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='palette'), sg.FileBrowse()],
           [sg.Text('Image', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='image'), sg.FileBrowse()],
           [sg.Text('Dithering')],
-          [sg.Column([[no_dither_radio, ordered_radio, diffusion_radio]])],
-          [sg.Column([[ordered_combo, diffusion_combo]])],
+          [sg.Column([[no_dither_radio, ordered_radio, diffusion_radio]]), sg.Column([[ordered_combo, diffusion_combo]])],
           [sg.Button('Apply', enable_events=True)]]
-
+# [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]), sg.Column([[diffusion_radio], [diffusion_combo]])]
 window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
 
 # Event loop

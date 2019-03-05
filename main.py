@@ -92,15 +92,15 @@ def image_popup(image):
 no_dither_radio = sg.Radio('None', 'RADIO1', enable_events=True, default=True, key='none radio')
 ordered_radio = sg.Radio('Ordered', 'RADIO1', enable_events=True, key='ordered radio')
 diffusion_radio = sg.Radio('Diffusion', 'RADIO1', enable_events=True, key='diffusion radio')
-ordered_combo = sg.Combo(list(BAYER_PRECALC.keys()), readonly=True, disabled=True, pad=((75,49),0), key='ordered combo')
+ordered_combo = sg.Combo(list(BAYER_PRECALC.keys()), readonly=True, disabled=True, key='ordered combo')
 diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=True, key='diffusion combo')
 
 layout = [[sg.Text('GPL palette', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='palette'), sg.FileBrowse()],
           [sg.Text('Image', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='image'), sg.FileBrowse()],
           [sg.Text('Dithering')],
-          [sg.Column([[no_dither_radio, ordered_radio, diffusion_radio]]), sg.Column([[ordered_combo, diffusion_combo]])],
+          [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]), sg.Column([[diffusion_radio], [diffusion_combo]])],
           [sg.Button('Apply', enable_events=True)]]
-# [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]), sg.Column([[diffusion_radio], [diffusion_combo]])]
+
 window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
 
 # Event loop

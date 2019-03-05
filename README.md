@@ -1,20 +1,23 @@
 # Image Palettizer
 ![](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/badge/version-2.1.0--dev-mediumpurple.svg)
 
-A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run of the mill graphics editor. Just run main.py, and follow the prompts.
+A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run of the mill graphics editor.
 
 
 ## Requirements
-Requires Python 3 and the following packages:
+Requires Python 3 and the following packages to run from source:
 - numpy
 - imageio
 - colorspacious
-- PySimpleGUI
 - psutil
+
+Or, on Windows 64-bit, there are no additional requirements when using the binary version.
 
 
 ## Installation
-Just download the repository and unzip it, or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`.
+If you want to run from source, just download the repository and unzip it, or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. 
+
+To run from binary on Windows 64-bit, simply download the executable `main.exe` from the dist folder, or, for slightly faster startup times, copy the `main` folder to `C:\Programs\`, and rename it to something like `Image-Palettizer`.
 
 
 ## Usage
@@ -27,7 +30,7 @@ Palette can be found here: [Dawnbringer's 16 color palette](http://pixeljoint.co
 Besides the core features that have been discussed, this program offers:
 - The ability to dither with 9 common error-diffusion methods
 - The ability to dither with 4 sizes of Bayer matrix (2x2, 3x3, 4x4, 8x8)
-- The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used)
+- The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used) **This has not yet been implemented in the GUI version**
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
 
 
@@ -37,3 +40,4 @@ Besides the core features that have been discussed, this program offers:
 - Add a Bayer matrix generator
 - Add the ability to work with multiple images, videos, and animated gifs (encode videos as gifs?)
 - Add an optimized color palette generator
+- Add GUI examples

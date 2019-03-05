@@ -3,7 +3,6 @@
 
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run of the mill graphics editor.
 
-
 ## Requirements
 Requires Python 3 and the following packages to run from source:
 - numpy
@@ -13,15 +12,14 @@ Requires Python 3 and the following packages to run from source:
 
 Or, on Windows 64-bit, there are no additional requirements when using the binary version.
 
-
 ## Installation
 If you want to run from source, just download the repository and unzip it, or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. 
 
 To run from binary on Windows 64-bit, simply download the executable `main.exe` from the dist folder, or, for slightly faster startup times, copy the `main` folder to `C:\Programs\`, and rename it to something like `Image-Palettizer`.
 
-
 ## Usage
-To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py, you’ll get several prompts, asking specifically what you want to do. You can drag and drop files onto the terminal to provide file paths when prompted (remember to hit *Enter*). The output image will be saved in the subdirectory `./output` as `output-TIMESTAMP.png`. See *Features* for specific capabilities.
+To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py (or main.exe), you’ll have some options on screen, allowing you to select specifically what you want to do. You can click the `Browse` buttons to provide paths for the palette and image. When you are ready, click `Apply`. You may see some loading bars, and then a preview window will pop up, allowing you to save your image (Note that the preview image may be of reduced quality, but this will not affect the final output). Click `Save As...` to choose where to save the file (be sure to include a file extension, such as `.png`) See *Features* for specific capabilities.
+
 ### Example
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](http://pixeljoint.com/forum/forum_posts.asp?TID=12795)
@@ -32,7 +30,6 @@ Besides the core features that have been discussed, this program offers:
 - The ability to dither with 4 sizes of Bayer matrix (2x2, 3x3, 4x4, 8x8)
 - The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used) **This has not yet been implemented in the GUI version**
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
-
 
 ## To-do
 - Improve code commentary

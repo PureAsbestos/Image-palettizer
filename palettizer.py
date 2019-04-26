@@ -31,7 +31,7 @@ def split_deltaE(image, color2, *args, **kwargs):
     return np.concatenate(image_output_sliced)
 
 
-def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_ordered=False):
+def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed=1.0):
     # Repeat each channel of the image to the length of the palette
     distances_1 = np.repeat(image_input[..., 0, np.newaxis], palette.shape[0], axis=2)
     distances_2 = np.repeat(image_input[..., 1, np.newaxis], palette.shape[0], axis=2)
@@ -48,7 +48,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
     image_quantized = np.array(distances.argmin(axis=2))
 
     # Dithering
-    if (not use_ordered) and dither_matrix in DIFFUSION_MAPS.values():
+    if (not use_ordered) and (not dither_matrix is None):
         quant_error = distances.min(axis=2)
         for row in range(distances.shape[0]):
             if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
@@ -61,7 +61,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
                 for triple in dither_matrix:
                     try:
                         distances[row + triple[1], col +
-                                  triple[0], pal_index] += quant_error[row, col] * triple[2]
+                                  triple[0], pal_index] += quant_error[row, col] * triple[2] * bleed
                     except IndexError:
                         pass
         image_indexed = distances.argmin(axis=2)
@@ -79,7 +79,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
                 dists = [distances[row, col, colors[0]], distances[row, col, colors[1]]]
 
                 image_indexed[row, col] = colors[0] if \
-                (dists[0] / sum(dists)) + dither_matrix[row % dither_matrix.shape[0], col % dither_matrix.shape[1]] < 1 \
+                (dists[0] / sum(dists)) + dither_matrix[row % dither_matrix.shape[0], col % dither_matrix.shape[1]] < bleed \
                 else colors[1]
 
     else:  # Type must be no dithering (plain quantization)

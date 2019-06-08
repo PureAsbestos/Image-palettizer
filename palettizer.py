@@ -14,6 +14,7 @@ def index2rgb(arr, pal):
 
 
 def counter(iterable, message='', id='single'):
+    sg.OneLineProgressMeter(message, 0, len(iterable), id)
     for i, val in enumerate(iterable):
         yield val
         if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):

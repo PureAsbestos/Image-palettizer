@@ -90,7 +90,7 @@ def image_popup(image):
                     imwrite(values['file'] + '.png', image)
                 break
             except Exception as e:
-                sg.PopupOK('Error saving image: ' + str(e), title='ERROR', text_color='red')
+                error_popup(e, 'Error saving image: ')
         else:
             break
     window.Close()
@@ -181,6 +181,9 @@ while True:
                 error_popup(e, 'Error during palettization: ')
                 image = None
             else:
-                image_popup(output_image)
+                try:
+                    image_popup(output_image)
+                except Exception as e:
+                    error_popup(e)
 
 window.Close()

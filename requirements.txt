@@ -1,6 +1,4 @@
 numpy
 imageio
 colorspacious
-tqdm
-qprompt
 psutil

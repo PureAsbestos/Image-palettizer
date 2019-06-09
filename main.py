@@ -1,5 +1,6 @@
 import palettizer
 import loadgpl
+import lospec
 from imageio import imread, imwrite
 import numpy as np
 from dithermaps import *
@@ -7,7 +8,7 @@ from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
 import os, sys
 
-VERSION = 'v2.1.0'
+VERSION = 'v3.0.0'
 sg.SetOptions(button_color=('black','#DDDDDD'))
 
 EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
@@ -102,89 +103,100 @@ def image_popup(image):
 ################################################################################
 # TODO: Commentary
 
-no_dither_radio = sg.Radio('None', 'RADIO1', enable_events=True, default=True, key='none radio')
-ordered_radio = sg.Radio('Ordered', 'RADIO1', enable_events=True, key='ordered radio')
-diffusion_radio = sg.Radio('Diffusion', 'RADIO1', enable_events=True, key='diffusion radio')
-ordered_combo = sg.Combo(list(BAYER_PRECALC.keys()), readonly=True, disabled=True, key='ordered combo')
-diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=True, key='diffusion combo')
-bleed_spin = sg.Spin(list(np.arange(101)/100), initial_value=1.0, key='bleed')
+if __name__ == '__main__':
+    no_dither_radio = sg.Radio('None', 'RADIO1', enable_events=True, default=True, key='none radio')
+    ordered_radio = sg.Radio('Ordered', 'RADIO1', enable_events=True, key='ordered radio')
+    diffusion_radio = sg.Radio('Diffusion', 'RADIO1', enable_events=True, key='diffusion radio')
+    ordered_combo = sg.Combo(list(BAYER_PRECALC.keys()), readonly=True, disabled=True, key='ordered combo')
+    diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=True, key='diffusion combo')
+    bleed_spin = sg.Spin(list(np.arange(101)/100), initial_value=1.0, key='bleed')
 
-layout = [[sg.Text('GPL palette', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='palette'), sg.FileBrowse()],
-          [sg.Text('Image', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='image'), sg.FileBrowse()],
-          [sg.Text('Dithering')],
-          [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]),
-           sg.Column([[diffusion_radio], [diffusion_combo]]), sg.Column([[sg.Text('Bleed')], [bleed_spin]])],
-          [sg.Button('Apply', enable_events=True)]]
+    frame_dithering_layout = [[sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]),
+                               sg.Column([[diffusion_radio], [diffusion_combo]]), sg.Column([[sg.Text('Bleed')], [bleed_spin]])]]
+    frame_dithering = sg.Frame('Dithering', frame_dithering_layout, pad=(0, 10))
 
-window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
+    layout = [[sg.Text('', size=(49, 1)), sg.Button('Get palette from Lospec', pad=(0, 20), enable_events=True, key='lospec')],
+              [sg.Text('GPL palette', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='palette'), sg.FileBrowse()],
+              [sg.Text('Image', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='image'), sg.FileBrowse()],
+              [sg.Text('')],
+              [sg.Text('', size=(5, 1)), frame_dithering],
+              [sg.Button('Apply', pad=(5, 20), bind_return_key=True)]]
 
-# Event loop
-while True:
-    event, values = window.Read()
+    window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
 
-    if event is None:
-        break
+    # Event loop
+    while True:
+        event, values = window.Read()
 
-    if values['ordered radio']:
-        window.FindElement('ordered combo').Update(disabled=False)
-    else:
-        window.FindElement('ordered combo').Update(disabled=True)
+        if event is None:
+            break
 
-    if values['diffusion radio']:
-        window.FindElement('diffusion combo').Update(disabled=False)
-    else:
-        window.FindElement('diffusion combo').Update(disabled=True)
-
-    if values['none radio']:
-        window.FindElement('bleed').Update(disabled=True)
-    else:
-        window.FindElement('bleed').Update(disabled=False)
-
-    if event == 'Apply':
-        palette_loc = values['palette']
-        image_loc = values['image']
-        use_ordered = values['ordered radio']
-
-        if not values['none radio']:
-            try:
-                bleed = float(values['bleed'])
-                assert (-1e100 <= bleed <= 1e100), 'Value must be between -1e100 and 1e100'
-            except Exception as e:
-                error_popup(e, 'Error in bleed value: ')
-                bleed = None
-                palette = None
-                image = None
-
-        if use_ordered:
-            dither_matrix = get_bayer_matrix(values['ordered combo'])
-        elif values['diffusion radio']:
-            dither_matrix = DIFFUSION_MAPS[values['diffusion combo']]
+        if values['ordered radio']:
+            window.FindElement('ordered combo').Update(disabled=False)
         else:
-            dither_matrix = None
-            bleed = None
+            window.FindElement('ordered combo').Update(disabled=True)
 
-        try:
-            palette = loadgpl.load_rgb(palette_loc)
-        except Exception as e:
-            error_popup(e, 'Error loading palette: ')
-            palette = None
+        if values['diffusion radio']:
+            window.FindElement('diffusion combo').Update(disabled=False)
+        else:
+            window.FindElement('diffusion combo').Update(disabled=True)
 
-        try:
-            image = imread(image_loc)
-        except Exception as e:
-            error_popup(e, 'Error loading image: ')
-            image = None
+        if values['none radio']:
+            window.FindElement('bleed').Update(disabled=True)
+        else:
+            window.FindElement('bleed').Update(disabled=False)
 
-        if (palette is not None) and (image is not None):
+        if event == 'lospec':
             try:
-                output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
+                window.FindElement('palette').Update(lospec.palette_retriever())
             except Exception as e:
-                error_popup(e, 'Error during palettization: ')
-                image = None
-            else:
-                try:
-                    image_popup(output_image)
-                except Exception as e:
-                    error_popup(e)
+                error_popup(e)
 
-window.Close()
+        if event == 'Apply':
+            palette_loc = values['palette']
+            image_loc = values['image']
+            use_ordered = values['ordered radio']
+
+            if not values['none radio']:
+                try:
+                    bleed = float(values['bleed'])
+                    assert (-1e100 <= bleed <= 1e100), 'Value must be between -1e100 and 1e100'
+                except Exception as e:
+                    error_popup(e, 'Error in bleed value: ')
+                    bleed = None
+                    palette = None
+                    image = None
+
+            if use_ordered:
+                dither_matrix = get_bayer_matrix(values['ordered combo'])
+            elif values['diffusion radio']:
+                dither_matrix = DIFFUSION_MAPS[values['diffusion combo']]
+            else:
+                dither_matrix = None
+                bleed = None
+
+            try:
+                palette = loadgpl.load_rgb(palette_loc)
+            except Exception as e:
+                error_popup(e, 'Error loading palette: ')
+                palette = None
+
+            try:
+                image = imread(image_loc)
+            except Exception as e:
+                error_popup(e, 'Error loading image: ')
+                image = None
+
+            if (palette is not None) and (image is not None):
+                try:
+                    output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
+                except Exception as e:
+                    error_popup(e, 'Error during palettization: ')
+                    image = None
+                else:
+                    try:
+                        image_popup(output_image)
+                    except Exception as e:
+                        error_popup(e)
+
+    window.Close()

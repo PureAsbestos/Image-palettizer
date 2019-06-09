@@ -6,8 +6,8 @@ A program that applies a .gpl palette to an image by finding the nearest color i
 ## Requirements
 Requires Python 3 and the following packages to run from source:
 - numpy
-- imageio
 - colorspacious
+- imageio
 - psutil
 - requests
 

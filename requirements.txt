@@ -1,4 +1,14 @@
-numpy
-imageio
-colorspacious
-psutil
+numpy>=1.16.3
+
+colorspacious>=1.1.2
+
+    pillow>=6.0.0
+imageio>=2.5.0
+
+psutil>=5.6.2
+
+    certifi>=2017.4.17
+    chardet<3.1.0,>=3.0.2
+    idna<2.9,>=2.5
+    urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1
+requests>=2.21.0

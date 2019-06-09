@@ -111,8 +111,10 @@ if __name__ == '__main__':
     diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=True, key='diffusion combo')
     bleed_spin = sg.Spin(list(np.arange(101)/100), initial_value=1.0, key='bleed')
 
-    frame_dithering_layout = [[sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]),
-                               sg.Column([[diffusion_radio], [diffusion_combo]]), sg.Column([[sg.Text('Bleed')], [bleed_spin]])]]
+    frame_dithering_layout = [[sg.Text('')],
+                              [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]),
+                               sg.Column([[diffusion_radio], [diffusion_combo]]), sg.Column([[sg.Text('Bleed')], [bleed_spin]])],
+                              [sg.Text('')]]
     frame_dithering = sg.Frame('Dithering', frame_dithering_layout, pad=(0, 10))
 
     layout = [[sg.Text('', size=(49, 1)), sg.Button('Get palette from Lospec', pad=(0, 20), enable_events=True, key='lospec')],

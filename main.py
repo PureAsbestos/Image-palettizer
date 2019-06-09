@@ -83,11 +83,12 @@ def image_popup(image):
     while True:
         event, values = window.Read()
         if event == 'Save':
+            writefile = values['file']
             try:
-                if '.' in values['file'] and values['file'].split('.')[-1] in EXT_LIST:
-                    imwrite(values['file'], image)
+                if '.' in writefile and writefile.split('.')[-1] in EXT_LIST:
+                    imwrite(writefile, image)
                 else:
-                    imwrite(values['file'] + '.png', image)
+                    imwrite(writefile + '.png', image)
                 break
             except Exception as e:
                 error_popup(e, 'Error saving image: ')

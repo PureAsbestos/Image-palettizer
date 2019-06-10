@@ -1,3 +1,4 @@
+![icon](https://github.com/PureAsbestos/Image-palettizer/blob/master/icon.ico)
 # Image Palettizer
 ![](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/badge/version-3.0.0--dev-mediumpurple.svg)
 

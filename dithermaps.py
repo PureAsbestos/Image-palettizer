@@ -132,5 +132,4 @@ def get_bayer_matrix(size):
     else:
         # This area is so that we can add a Bayer matrix generator later,
         # but it isn't currently implemented
-        print("Size was not found in precalculated matrices.")
-        return None
+        raise NotImplementedError

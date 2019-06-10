@@ -1,7 +1,7 @@
 import numpy as np
 from colorspacious import deltaE
 from dithermaps import DIFFUSION_MAPS, get_bayer_matrix
-from tqdm import tqdm, trange
+import PySimpleGUI as sg
 from psutil import virtual_memory
 
 
@@ -13,19 +13,26 @@ def index2rgb(arr, pal):
     return out
 
 
+def counter(iterable, message='', id='single'):
+    sg.OneLineProgressMeter(message, 0, len(iterable), id)
+    for i, val in enumerate(iterable):
+        yield val
+        if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):
+            break
+
+
 def split_deltaE(image, color2, *args, **kwargs):
-    split_val = 25000 * np.ceil(virtual_memory()[0] / 1024**3)
-    image_sliced = np.array_split(image, np.ceil(image.shape[0] * image.shape[1] / split_val))
-    print('\nImage will be split into ' + str(len(image_sliced)) + ' pieces.\n')
+    split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
+    splits = np.ceil((len(color2)**0.5555) * image.shape[0] * image.shape[1] / split_val)
+    image_sliced = np.array_split(image, splits)
     image_output_sliced = [
         deltaE(image_sec, color2, *args, **kwargs)
-        for image_sec in tqdm(image_sliced, desc='Quantizing')
-    ]
-    image_output = np.concatenate(image_output_sliced)
-    return image_output
+        for image_sec in counter(image_sliced, 'Quantizing...')
+        ]
+    return np.concatenate(image_output_sliced)
 
 
-def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_ordered=False):
+def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed=1.0):
     # Repeat each channel of the image to the length of the palette
     distances_1 = np.repeat(image_input[..., 0, np.newaxis], palette.shape[0], axis=2)
     distances_2 = np.repeat(image_input[..., 1, np.newaxis], palette.shape[0], axis=2)
@@ -42,9 +49,11 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
     image_quantized = np.array(distances.argmin(axis=2))
 
     # Dithering
-    if (not use_ordered) and dither_matrix in DIFFUSION_MAPS.values():
+    if (not use_ordered) and (not dither_matrix is None):
         quant_error = distances.min(axis=2)
-        for row in trange(distances.shape[0], desc='Dithering'):
+        for row in range(distances.shape[0]):
+            if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
+                break
             for col in range(distances.shape[1]):
                 quant_error[row, col] = distances[row, col].min()
                 image_quantized[row, col] = distances[row, col].argmin()
@@ -53,14 +62,16 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
                 for triple in dither_matrix:
                     try:
                         distances[row + triple[1], col +
-                                  triple[0], pal_index] += quant_error[row, col] * triple[2]
+                                  triple[0], pal_index] += quant_error[row, col] * triple[2] * bleed
                     except IndexError:
                         pass
         image_indexed = distances.argmin(axis=2)
     elif use_ordered:
         image_quant2 = np.argpartition(distances, 1)[..., 1]
         image_indexed = np.zeros(distances.shape[:2]).astype('intp')
-        for row in trange(distances.shape[0], desc='Dithering'):
+        for row in range(distances.shape[0]):
+            if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
+                break
             for col in range(distances.shape[1]):
                 near_color = image_quantized[row, col]
                 far_color = image_quant2[row, col]
@@ -69,7 +80,7 @@ def palettize(palette, image_input, dither_matrix=DIFFUSION_MAPS['burkes'], use_
                 dists = [distances[row, col, colors[0]], distances[row, col, colors[1]]]
 
                 image_indexed[row, col] = colors[0] if \
-                (dists[0] / sum(dists)) + dither_matrix[row % dither_matrix.shape[0], col % dither_matrix.shape[1]] < 1 \
+                (dists[0] / sum(dists)) + dither_matrix[row % dither_matrix.shape[0], col % dither_matrix.shape[1]] < bleed \
                 else colors[1]
 
     else:  # Type must be no dithering (plain quantization)

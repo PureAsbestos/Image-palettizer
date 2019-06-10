@@ -8,7 +8,7 @@ from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
 import os, sys
 
-VERSION = 'v3.0.0'
+VERSION = 'v3.0.1'
 sg.SetOptions(button_color=('black','#DDDDDD'))
 
 EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',

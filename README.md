@@ -23,7 +23,7 @@ To begin, you’ll need two things: a palette in .gpl format, and an image (png,
 
 ### Example
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
-Palette can be found here: [Dawnbringer's 16 color palette](http://pixeljoint.com/forum/forum_posts.asp?TID=12795)
+Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
 
 ## Features
 Besides the core features that have been discussed, this program offers:

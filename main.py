@@ -8,7 +8,7 @@ from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
 import os, sys
 
-VERSION = 'v3.0.1'
+VERSION = 'v3.0.2'
 
 if getattr( sys, 'frozen', False ) :
         # running in a bundle

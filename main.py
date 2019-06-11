@@ -12,10 +12,10 @@ VERSION = 'v3.0.2'
 
 if getattr( sys, 'frozen', False ) :
         # running in a bundle
-        icon_loc = str(os.path.join(sys._MEIPASS,'icon.ico'))
+        icon_loc = str(os.path.join(sys._MEIPASS, 'data/icon.ico'))
 else :
         # running live
-        icon_loc = 'icon.ico'
+        icon_loc = 'data/icon.ico'
 
 sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)
 

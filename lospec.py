@@ -24,10 +24,11 @@ def palette_retriever():
                 r.raise_for_status()
                 if not os.path.exists('./palettes'):
                     os.mkdir('./palettes')
-                with open(f'./palettes/{palette_name}.gpl', mode='wb+') as f:
+                pal_path = os.path.abspath(f'./palettes/{palette_name}.gpl')
+                with open(pal_path, mode='wb+') as f:
                     f.write(r.content)
                 window.Close()
-                return f'./palettes/{palette_name}.gpl'
+                return pal_path
             except Exception as e:
                 error_popup(e, 'Could not retrieve palette: ')
 

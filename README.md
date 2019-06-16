@@ -26,9 +26,6 @@ To begin, you’ll need two things: a palette in .gpl format, and an image (png,
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
 
-### Demonstration
-<video src="blob:https://www.dropbox.com/4d1661bd-b259-4e69-8b59-36ec3d8c9a38" width:"1668" height:"936" controls preload></video>
-
 ## Features
 Besides the core features that have been discussed, this program offers:
 - The ability to dither with 9 common error-diffusion methods

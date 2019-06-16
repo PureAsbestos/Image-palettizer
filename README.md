@@ -1,6 +1,6 @@
 ![icon](https://github.com/PureAsbestos/Image-palettizer/blob/master/icon.ico)
 # Image Palettizer
-![](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![](https://img.shields.io/badge/version-3.1.0--dev-mediumpurple.svg)
+![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![version](https://img.shields.io/badge/version-3.1.0--dev-mediumpurple.svg)
 
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run of the mill graphics editor.
 
@@ -25,6 +25,9 @@ To begin, you’ll need two things: a palette in .gpl format, and an image (png,
 ### Example
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
+
+### Demonstration
+<video src="blob:https://www.dropbox.com/4d1661bd-b259-4e69-8b59-36ec3d8c9a38" width:"1668" height:"936" controls preload></video>
 
 ## Features
 Besides the core features that have been discussed, this program offers:

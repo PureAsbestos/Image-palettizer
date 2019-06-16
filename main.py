@@ -6,16 +6,19 @@ import numpy as np
 from dithermaps import *
 from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
+from sg_extensions import error_popup
 import os, sys
 
-VERSION = 'v3.0.2'
+VERSION = 'v3.1.0'
 
-if getattr( sys, 'frozen', False ) :
+if getattr(sys, 'frozen', False):
         # running in a bundle
-        icon_loc = str(os.path.join(sys._MEIPASS, 'data/icon.ico'))
+        DATA_LOC = os.path.join(sys._MEIPASS, 'data')
 else :
         # running live
-        icon_loc = 'data/icon.ico'
+        DATA_LOC = os.path.abspath('./data')
+
+icon_loc = str(os.path.join(DATA_LOC, 'icon.ico'))
 
 sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)
 
@@ -27,10 +30,6 @@ EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
 if 'win' in sys.platform:
     import ctypes
     ctypes.windll.shcore.SetProcessDpiAwareness(1)
-
-
-def error_popup(e, prefix='Error: '):
-    sg.PopupOK(prefix + str(e), title='ERROR', text_color='red')
 
 
 def do_palettize(palette, image, *args, **kwargs):
@@ -88,7 +87,7 @@ def image_popup(image):
               [sg.Text('Save location', justification='right'), sg.InputText(do_not_clear=True, key='file'), sg.SaveAs()],
               [sg.Save(), sg.Cancel()]]
 
-    window = sg.Window('Output Image', auto_size_text=True).Layout(layout)
+    window = sg.Window('Output Image', auto_size_text=True).Layout(layout).grab_set()
     while True:
         event, values = window.Read()
         if event == 'Save':
@@ -103,7 +102,7 @@ def image_popup(image):
                 error_popup(e, 'Error saving image: ')
         else:
             break
-    window.Close()
+    window.grab_release().Close()
     temp.close()
     os.remove(temp_name)
 

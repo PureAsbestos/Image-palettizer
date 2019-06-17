@@ -28,7 +28,7 @@ def palette_retriever():
             webbrowser.open('https://lospec.com/palette-list')
         elif event == 'Get':
             try:
-                palette_name = '-'.join(re.sub(r'[^\w\s]', '', values['palette'].casefold().strip()).split())
+                palette_name = '-'.join(re.sub(r'([^\w\s-]|[_])', '', values['palette'].casefold().strip()).split())
                 r = requests.get(f'https://lospec.com/palette-list/{palette_name}.gpl', timeout=1.5)
                 r.raise_for_status()
                 if not os.path.exists('./palettes'):

@@ -9,7 +9,7 @@ import PySimpleGUI as sg
 from sg_extensions import error_popup
 import os, sys
 
-VERSION = 'v3.1.0'
+VERSION = 'v3.1.1'
 
 if getattr(sys, 'frozen', False):
         # running in a bundle

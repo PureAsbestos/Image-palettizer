@@ -15,7 +15,7 @@ Requires Python 3 and the following packages to run from source:
 Or, on Windows 64-bit, there are no additional requirements when using the binary version (found in releases).
 
 ## Installation
-If you want to run from source, just download the the source from releases and unzip it (recommended), or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. Then install dependencies like this: `pip3 install -r requirements.txt`.
+If you want to run from source, just download the the source from releases and unzip it (recommended), or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. Then install dependencies like this: `pip3 install -r requirements.txt`. Run `main.py` to get started.
 
 To run from binary on Windows 64-bit, simply download the executable from releases, or, for slightly faster startup times, use the portable installation.
 

@@ -12,7 +12,7 @@ BTN_C = '#4d4750'
 BTN_TXT_C = '#fff'
 BOX_C = '#29252a'
 
-layout = [[sg.Image(os.path.join(DATA_LOC, 'lospec.gif'), pad=((180, 0), 100), size=(332, 80), tooltip='https://lospec.com/palette-list', background_color=BG_C, enable_events=True, key='link')],
+layout = [[sg.Image(os.path.join(DATA_LOC, 'lospec.gif'), pad=((250, 0), (120, 105)), size=(332, 80), tooltip='https://lospec.com/palette-list', background_color=BG_C, enable_events=True, key='link')],
           [sg.Text('Name of palette on Lospec:', size=(22, 1), justification='right', text_color=TXT_C, background_color=BG_C),
            sg.InputText(do_not_clear=True, background_color=BOX_C, text_color=BTN_TXT_C, key='palette'), sg.Button('Get', button_color=(BTN_TXT_C, BTN_C), bind_return_key=True, pad=(10, 0))],
            [sg.Text('', background_color=BG_C)]]

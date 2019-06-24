@@ -1,6 +1,8 @@
 import os
 import sys
 
+# Based on https://learning-python.com/cgi/showcode.py?name=pyedit-products/unzipped/multiprocessing_exe_patch.py
+
 # Problem only occurs on Windows when running in onefile mode
 if sys.platform.startswith('win') and hasattr(sys, 'frozen'):
 

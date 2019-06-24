@@ -11,6 +11,7 @@ Requires Python 3.6+ and the following packages to run from source:
 - imageio
 - psutil
 - requests
+- multiprocess
 
 Or, on Windows 64-bit, there are no additional requirements when using the binary version (found in releases).
 

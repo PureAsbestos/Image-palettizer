@@ -43,5 +43,5 @@ Besides the core features that have been discussed, this program offers:
 - Add a Bayer matrix generator
 - Add the ability to work with multiple images, videos, and animated gifs (encode videos as gifs?)
 - Add an optimized color palette generator
-- Add GUI examples
+- ~~Add GUI examples~~
 - The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used)

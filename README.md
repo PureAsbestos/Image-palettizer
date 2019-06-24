@@ -5,7 +5,7 @@
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
 
 ## Requirements
-Requires Python 3 and the following packages to run from source:
+Requires Python 3.6+ and the following packages to run from source:
 - numpy
 - colorspacious
 - imageio

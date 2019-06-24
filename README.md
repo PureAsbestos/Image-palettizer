@@ -36,6 +36,7 @@ Besides the core features that have been discussed, this program offers:
 - Integration with [Lospec](https://lospec.com/palette-list) for easy retrieval and use of color palettes
 - The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used) **This has not yet been implemented in the GUI version**
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
+- Partial concurrency for faster run time on multi-core systems
 
 ## To-do
 - Improve code commentary

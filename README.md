@@ -5,7 +5,7 @@
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
 
 ## Requirements
-Requires Python 3 and the following packages to run from source:
+Requires Python 3.6+ and the following packages to run from source:
 - numpy
 - colorspacious
 - imageio
@@ -15,7 +15,7 @@ Requires Python 3 and the following packages to run from source:
 Or, on Windows 64-bit, there are no additional requirements when using the binary version (found in releases).
 
 ## Installation
-If you want to run from source, just download the the source from releases and unzip it (recommended), or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. 
+If you want to run from source, just download the the source from releases and unzip it (recommended), or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. Then install dependencies like this: `pip3 install -r requirements.txt`. Run `main.py` to get started.
 
 To run from binary on Windows 64-bit, simply download the executable from releases, or, for slightly faster startup times, use the portable installation.
 

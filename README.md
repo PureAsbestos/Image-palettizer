@@ -34,7 +34,6 @@ Besides the core features that have been discussed, this program offers:
 - The ability to dither with 9 common error-diffusion methods
 - The ability to dither with 4 sizes of Bayer matrix (2x2, 3x3, 4x4, 8x8)
 - Integration with [Lospec](https://lospec.com/palette-list) for easy retrieval and use of color palettes
-- The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used) **This has not yet been implemented in the GUI version**
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
 - Partial concurrency for faster run time on multi-core systems
 
@@ -45,3 +44,4 @@ Besides the core features that have been discussed, this program offers:
 - Add the ability to work with multiple images, videos, and animated gifs (encode videos as gifs?)
 - Add an optimized color palette generator
 - Add GUI examples
+- The ability to dither using a loaded image as the threshold matrix (this is especially useful for dithering with a blue-noise texture, but any texture can be used)

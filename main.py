@@ -7,16 +7,17 @@ from dithermaps import *
 from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
 from sg_extensions import error_popup
-import os, sys
+import os, sys, io
 from PIL import Image, ImageTk
-import io, base64
+import multiprocess as multi
+import multipatch
 
 from constants import VERSION, DATA_LOC, EXT_LIST
 
 icon_loc = str(os.path.join(DATA_LOC, 'icon.ico'))
 sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)
 
-if 'win' in sys.platform and sys.platform != 'darwin':
+if sys.platform.startswith('win'):
     import ctypes
     ctypes.windll.shcore.SetProcessDpiAwareness(1)
 
@@ -74,6 +75,9 @@ def image_popup(image):
 # TODO: Commentary
 
 if __name__ == '__main__':
+    # Necessary for Windows bundles
+    multi.freeze_support()
+
     no_dither_radio = sg.Radio('None', 'RADIO1', enable_events=True, default=True, key='none radio')
     ordered_radio = sg.Radio('Ordered', 'RADIO1', enable_events=True, key='ordered radio')
     diffusion_radio = sg.Radio('Diffusion', 'RADIO1', enable_events=True, key='diffusion radio')

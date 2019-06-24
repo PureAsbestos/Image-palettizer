@@ -62,8 +62,8 @@ def TimerStop():
 
     It's a mess.... really... it's a mess internally... it's the external-facing interfaces that
     are not a mess.  The Elements and the methods for them are well-designed.
-    PEP8 - this code is far far from PEP8 compliant. 
-    It was written PRIOR to learning that PEP8 existed. 
+    PEP8 - this code is far far from PEP8 compliant.
+    It was written PRIOR to learning that PEP8 existed.
 
     I'll be honest.... started learning Python in Nov 2017, started writing PySimpleGUI in Feb 2018.
     Released PySimpleGUI in July 2018.  I knew so little about Python that my parameters were all named
@@ -71,13 +71,13 @@ def TimerStop():
     parameters to lower case.  Unfortunately, the internal naming conventions have been set.  Mixing them
     with PEP8 at this moment would be even MORE confusing.
 
-    Code I write now, outside PySimpleGUI, IS PEP8 compliant.  
+    Code I write now, outside PySimpleGUI, IS PEP8 compliant.
 
     The variable and function naming in particular are not compliant.  There is
     liberal use of CamelVariableAndFunctionNames.  If you've got a serious enough problem with this
     that you'll pass on this package, then that's your right and I invite you to do so.  However, if
     perhaps you're a practical thinker where it's the results that matter, then you'll have no
-    trouble with this code base.  There is consisency however.  
+    trouble with this code base.  There is consisency however.
 
     I truly hope you get a lot of enjoyment out of using PySimpleGUI.  It came from good intentions.
 """
@@ -298,8 +298,8 @@ class ToolTip:
     def __init__(self, widget, text, timeout=DEFAULT_TOOLTIP_TIME):
         """
 
-        :param widget: 
-        :param text: 
+        :param widget:
+        :param text:
         :param timeout:  (Default value = DEFAULT_TOOLTIP_TIME)
 
         """
@@ -385,7 +385,7 @@ class Element():
     def __init__(self, type, size=(None, None), auto_size_text=None, font=None, background_color=None, text_color=None, key=None, pad=None, tooltip=None, visible=True):
         """
 
-        :param type: 
+        :param type:
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
         :param font: (common_key) specifies the font family, size, etc (Default value = None)
@@ -425,7 +425,7 @@ class Element():
     def _RightClickMenuCallback(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         self.TKRightClickMenu.tk_popup(event.x_root, event.y_root, 0)
@@ -434,7 +434,7 @@ class Element():
     def _MenuItemChosenCallback(self, item_chosen):  # TEXT Menu item callback
         """
 
-        :param item_chosen: 
+        :param item_chosen:
 
         """
         # print('IN MENU ITEM CALLBACK', item_chosen)
@@ -447,7 +447,7 @@ class Element():
     def _FindReturnKeyBoundButton(self, form):
         """
 
-        :param form: 
+        :param form:
 
         """
         for row in form.Rows:
@@ -480,7 +480,7 @@ class Element():
     def _TextClickedHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if self.Key is not None:
@@ -494,7 +494,7 @@ class Element():
     def _ReturnKeyHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         MyForm = self.ParentForm
@@ -505,7 +505,7 @@ class Element():
     def _ListboxSelectHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         # first, get the results table built
@@ -521,7 +521,7 @@ class Element():
     def _ComboboxSelectHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         # first, get the results table built
@@ -557,7 +557,7 @@ class Element():
     def _TabGroupSelectHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if self.Key is not None:
@@ -571,7 +571,7 @@ class Element():
     def _KeyboardHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if self.Key is not None:
@@ -585,7 +585,7 @@ class Element():
     def _ClickHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if self.Key is not None:
@@ -599,7 +599,7 @@ class Element():
     def SetTooltip(self, tooltip_text):
         """
 
-        :param tooltip_text: 
+        :param tooltip_text:
 
         """
         self.TooltipObject = ToolTip(self.Widget, text=tooltip_text, timeout=DEFAULT_TOOLTIP_TIME)
@@ -730,7 +730,7 @@ class Combo(Element):
                  tooltip=None, readonly=False, font=None, visible=True):
         """Combo Element - Combo Box, Drop Down Menu, ...
 
-        :param values: 
+        :param values:
         :param default_value:  (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
@@ -838,7 +838,7 @@ class OptionMenu(Element):
                  background_color=None, text_color=None, key=None, pad=None, tooltip=None, visible=True):
         """Option Menu Element
 
-        :param values: 
+        :param values:
         :param default_value:  (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param disabled: set disable state for element (Default value = False)
@@ -925,7 +925,7 @@ class Listbox(Element):
                  visible=True):
         """Listbox Element
 
-        :param values: 
+        :param values:
         :param default_values:  (Default value = None)
         :param select_mode:  (Default value = None)
         :param change_submits: If True, pressing Enter key submits window (Default value = False)
@@ -977,7 +977,7 @@ class Listbox(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if disabled == True:
             self.TKListbox.configure(state='disabled')
         elif disabled == False:
@@ -1004,7 +1004,7 @@ class Listbox(Element):
     def SetValue(self, values):
         """
 
-        :param values: 
+        :param values:
 
         """
         for index, item in enumerate(self.Values):
@@ -1051,8 +1051,8 @@ class Radio(Element):
                  change_submits=False, enable_events=False, visible=True):
         """
 
-        :param text: 
-        :param group_id: 
+        :param text:
+        :param group_id:
         :param default:  (Default value = False)
         :param disabled: set disable state for element (Default value = False)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
@@ -1068,7 +1068,7 @@ class Radio(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.InitialState = default
         self.Text = text
         self.TKRadio = None
@@ -1090,7 +1090,7 @@ class Radio(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             try:
                 self.TKIntVar.set(self.EncodedRadioValue)
@@ -1128,13 +1128,13 @@ class Radio(Element):
 # Note - The renaming of the member function to have _ if internal only has NOT yet been done!
 class Checkbox(Element):
     """ """
-    
+
     def __init__(self, text, default=False, size=(None, None), auto_size_text=None, font=None, background_color=None,
                  text_color=None, change_submits=False, enable_events=False, disabled=False, key=None, pad=None,
                  tooltip=None, visible=True):
         """
 
-        :param text: 
+        :param text:
         :param default:  (Default value = False)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
@@ -1150,7 +1150,7 @@ class Checkbox(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.Text = text
         self.InitialState = default
         self.Value = None
@@ -1175,7 +1175,7 @@ class Checkbox(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             try:
                 self.TKIntVar.set(value)
@@ -1208,13 +1208,13 @@ Check = Checkbox
 
 class Spin(Element):
     """ """
-    
+
     def __init__(self, values, initial_value=None, disabled=False, change_submits=False, enable_events=False,
                  size=(None, None), auto_size_text=None, font=None, background_color=None, text_color=None, key=None,
                  pad=None, tooltip=None, visible=True):
         """
 
-        :param values: 
+        :param values:
         :param initial_value:  (Default value = None)
         :param disabled: set disable state for element (Default value = False)
         :param change_submits: If True, pressing Enter key submits window (Default value = False)
@@ -1230,7 +1230,7 @@ class Spin(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.Values = values
         self.DefaultValue = initial_value
         self.ChangeSubmits = change_submits or enable_events
@@ -1252,7 +1252,7 @@ class Spin(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if values != None:
             old_value = self.TKStringVar.get()
             self.Values = values
@@ -1276,7 +1276,7 @@ class Spin(Element):
     def SpinChangedHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         # first, get the results table built
@@ -1307,7 +1307,7 @@ class Spin(Element):
 # ---------------------------------------------------------------------- #
 class Multiline(Element):
     """ """
-    
+
     def __init__(self, default_text='', enter_submits=False, disabled=False, autoscroll=False, border_width=None,
                  size=(None, None), auto_size_text=None, background_color=None, text_color=None, change_submits=False,
                  enable_events=False, do_not_clear=True, key=None, focus=False, font=None, pad=None, tooltip=None,
@@ -1335,7 +1335,7 @@ class Multiline(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
 
         self.DefaultText = default_text
         self.EnterSubmits = enter_submits
@@ -1367,7 +1367,7 @@ class Multiline(Element):
         :param autoscroll:  (Default value = None)
 
         """
-        
+
         if autoscroll is not None:
             self.Autoscroll = autoscroll
         if value is not None:
@@ -1420,13 +1420,13 @@ class Multiline(Element):
 # ---------------------------------------------------------------------- #
 class Text(Element):
     """ """
-    
+
     def __init__(self, text, size=(None, None), auto_size_text=None, click_submits=False, enable_events=False,
                  relief=None, font=None, text_color=None, background_color=None, justification=None, pad=None, key=None,
                  right_click_menu=None, tooltip=None, visible=True):
         """
 
-        :param text: 
+        :param text:
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
         :param click_submits:  (Default value = False)
@@ -1443,7 +1443,7 @@ class Text(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.DisplayText = str(text)
         self.TextColor = text_color if text_color else DEFAULT_TEXT_COLOR
         self.Justification = justification
@@ -1470,7 +1470,7 @@ class Text(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             self.DisplayText = value
             stringvar = self.TKStringVar
@@ -1501,13 +1501,13 @@ T = Text
 # ---------------------------------------------------------------------- #
 class StatusBar(Element):
     """ """
-    
+
     def __init__(self, text, size=(None, None), auto_size_text=None, click_submits=None, enable_events=False,
                  relief=RELIEF_SUNKEN, font=None, text_color=None, background_color=None, justification=None, pad=None,
                  key=None, tooltip=None, visible=True):
         """
 
-        :param text: 
+        :param text:
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
         :param click_submits:  (Default value = None)
@@ -1523,7 +1523,7 @@ class StatusBar(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.DisplayText = text
         self.TextColor = text_color if text_color else DEFAULT_TEXT_COLOR
         self.Justification = justification
@@ -1548,7 +1548,7 @@ class StatusBar(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             self.DisplayText = value
             stringvar = self.TKStringVar
@@ -1581,8 +1581,8 @@ class TKProgressBar():
                  orientation='horizontal', BarColor=(None, None), key=None):
         """
 
-        :param root: 
-        :param max: 
+        :param root:
+        :param max:
         :param length:  (Default value = 400)
         :param width:  (Default value = DEFAULT_PROGRESS_BAR_SIZE[1])
         :param style:  (Default value = DEFAULT_PROGRESS_BAR_STYLE)
@@ -1667,10 +1667,10 @@ class TKOutput(tk.Frame):
     def __init__(self, parent, width, height, bd, background_color=None, text_color=None, font=None, pad=None):
         """
 
-        :param parent: 
-        :param width: 
-        :param height: 
-        :param bd: 
+        :param parent:
+        :param width:
+        :param height:
+        :param bd:
         :param background_color: color of background (Default value = None)
         :param text_color: color of the text (Default value = None)
         :param font: (common_key) specifies the font family, size, etc (Default value = None)
@@ -1700,7 +1700,7 @@ class TKOutput(tk.Frame):
     def write(self, txt):
         """
 
-        :param txt: 
+        :param txt:
 
         """
         try:
@@ -1731,7 +1731,7 @@ class TKOutput(tk.Frame):
 # ---------------------------------------------------------------------- #
 class Output(Element):
     """ """
-    
+
     def __init__(self, size=(None, None), background_color=None, text_color=None, pad=None, font=None, tooltip=None,
                  key=None, right_click_menu=None, visible=True):
         """
@@ -1747,7 +1747,7 @@ class Output(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self._TKOut = None
         bg = background_color if background_color else DEFAULT_INPUT_ELEMENTS_COLOR
         fg = text_color if text_color is not None else DEFAULT_INPUT_TEXT_COLOR
@@ -1771,7 +1771,7 @@ class Output(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             self._TKOut.output.delete('1.0', tk.END)
             self._TKOut.output.insert(tk.END, value)
@@ -1794,7 +1794,7 @@ class Output(Element):
 # ---------------------------------------------------------------------- #
 class Button(Element):
     """ """
-    
+
     def __init__(self, button_text='', button_type=BUTTON_TYPE_READ_FORM, target=(None, None), tooltip=None,
                  file_types=(("ALL Files", "*.*"),), initial_folder=None, disabled=False, change_submits=False,
                  enable_events=False, image_filename=None, image_data=None, image_size=(None, None),
@@ -1804,7 +1804,7 @@ class Button(Element):
 
         :param button_text:  (Default value = '')
         :param button_type:  (Default value = BUTTON_TYPE_READ_FORM)
-        :param target: 
+        :param target:
         :param tooltip: text, that will appear the you hover on (Default value = None)
         :param file_types:  (Default value = (("ALL Files", "*.*"),))
         :param initial_folder:  (Default value = None)
@@ -1827,7 +1827,7 @@ class Button(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.AutoSizeButton = auto_size_button
         self.BType = button_type
         self.FileTypes = file_types
@@ -1859,7 +1859,7 @@ class Button(Element):
     def ButtonReleaseCallBack(self, parm):
         """
 
-        :param parm: 
+        :param parm:
 
         """
         self.LastButtonClickedWasRealtime = False
@@ -1869,7 +1869,7 @@ class Button(Element):
     def ButtonPressCallBack(self, parm):
         """
 
-        :param parm: 
+        :param parm:
 
         """
         self.ParentForm.LastButtonClickedWasRealtime = True
@@ -2034,7 +2034,7 @@ class Button(Element):
         :param image_size:  (Default value = None)
 
         """
-        
+
         try:
             if text is not None:
                 self.TKButton.configure(text=text)
@@ -2118,15 +2118,15 @@ Butt = Button
 # ---------------------------------------------------------------------- #
 class ButtonMenu(Element):
     """ """
-    
+
     def __init__(self, button_text, menu_def, tooltip=None, disabled=False,
                  image_filename=None, image_data=None, image_size=(None, None), image_subsample=None, border_width=None,
                  size=(None, None), auto_size_button=None, button_color=None, font=None, pad=None, key=None,
                  tearoff=False, visible=True):
         """
 
-        :param button_text: 
-        :param menu_def: 
+        :param button_text:
+        :param menu_def:
         :param tooltip: text, that will appear the you hover on (Default value = None)
         :param disabled: set disable state for element (Default value = False)
         :param image_filename:  (Default value = None)
@@ -2144,7 +2144,7 @@ class ButtonMenu(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.MenuDefinition = menu_def
         self.AutoSizeButton = auto_size_button
         self.ButtonText = button_text
@@ -2171,7 +2171,7 @@ class ButtonMenu(Element):
     def _MenuItemChosenCallback(self, item_chosen):  # ButtonMenu Menu Item Chosen Callback
         """
 
-        :param item_chosen: 
+        :param item_chosen:
 
         """
         # print('IN MENU ITEM CALLBACK', item_chosen)
@@ -2184,11 +2184,11 @@ class ButtonMenu(Element):
     def Update(self, menu_definition, visible=None):
         """
 
-        :param menu_definition: 
+        :param menu_definition:
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         self.MenuDefinition = menu_definition
         if menu_definition is not None:
             self.TKMenu = tk.Menu(self.TKButtonMenu, tearoff=self.Tearoff)  # create the menubar
@@ -2217,7 +2217,7 @@ class ProgressBar(Element):
                  style=None, border_width=None, relief=None, key=None, pad=None, visible=True):
         """
 
-        :param max_value: 
+        :param max_value:
         :param orientation:  (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param auto_size_text: True if size should fit the text length (Default value = None)
@@ -2230,7 +2230,7 @@ class ProgressBar(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.MaxValue = max_value
         self.TKProgressBar = None
         self.Cancelled = False
@@ -2248,11 +2248,11 @@ class ProgressBar(Element):
     def UpdateBar(self, current_count, max=None):
         """
 
-        :param current_count: 
+        :param current_count:
         :param max:  (Default value = None)
 
         """
-        
+
         if self.ParentForm.TKrootDestroyed:
             return False
         self.TKProgressBar.Update(current_count, max=max)
@@ -2270,7 +2270,7 @@ class ProgressBar(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if visible is False:
             self.TKProgressBar.TKProgressBarForReal.pack_forget()
         elif visible is True:
@@ -2290,7 +2290,7 @@ class ProgressBar(Element):
 # ---------------------------------------------------------------------- #
 class Image(Element):
     """ """
-    
+
     def __init__(self, filename=None, data=None, background_color=None, size=(None, None), pad=None, key=None,
                  tooltip=None, right_click_menu=None, visible=True, enable_events=False):
         """
@@ -2307,7 +2307,7 @@ class Image(Element):
         :param enable_events: Turns on the element specific events.(Default value = False)
 
         """
-        
+
         self.Filename = filename
         self.Data = data
         self.tktext_label = None
@@ -2335,7 +2335,7 @@ class Image(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if filename is not None:
             image = tk.PhotoImage(file=filename)
         elif data is not None:
@@ -2360,11 +2360,11 @@ class Image(Element):
     def UpdateAnimation(self, source, time_between_frames=0):
         """
 
-        :param source: 
+        :param source:
         :param time_between_frames:  (Default value = 0)
 
         """
-        
+
         if self.Source != source:
             self.AnimatedFrames = None
             self.Source = source
@@ -2414,7 +2414,7 @@ class Image(Element):
 # ---------------------------------------------------------------------- #
 class Canvas(Element):
     """ """
-    
+
     def __init__(self, canvas=None, background_color=None, size=(None, None), pad=None, key=None, tooltip=None,
                  right_click_menu=None, visible=True):
         """
@@ -2429,7 +2429,7 @@ class Canvas(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.BackgroundColor = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
         self._TKCanvas = canvas
         self.RightClickMenu = right_click_menu
@@ -2456,15 +2456,15 @@ class Canvas(Element):
 # ---------------------------------------------------------------------- #
 class Graph(Element):
     """ """
-    
+
     def __init__(self, canvas_size, graph_bottom_left, graph_top_right, background_color=None, pad=None,
                  change_submits=False, drag_submits=False, enable_events=False, key=None, tooltip=None,
                  right_click_menu=None, visible=True):
         """
 
-        :param canvas_size: 
-        :param graph_bottom_left: 
-        :param graph_top_right: 
+        :param canvas_size:
+        :param graph_bottom_left:
+        :param graph_top_right:
         :param background_color: color of background (Default value = None)
         :param pad: (common_key) Amount of padding to put around element (Default value = None)
         :param change_submits: If True, pressing Enter key submits window (Default value = False)
@@ -2476,7 +2476,7 @@ class Graph(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.CanvasSize = canvas_size
         self.BottomLeft = graph_bottom_left
         self.TopRight = graph_top_right
@@ -2496,8 +2496,8 @@ class Graph(Element):
     def _convert_xy_to_canvas_xy(self, x_in, y_in):
         """
 
-        :param x_in: 
-        :param y_in: 
+        :param x_in:
+        :param y_in:
 
         """
         if None in (x_in, y_in):
@@ -2511,8 +2511,8 @@ class Graph(Element):
     def _convert_canvas_xy_to_xy(self, x_in, y_in):
         """
 
-        :param x_in: 
-        :param y_in: 
+        :param x_in:
+        :param y_in:
 
         """
         if None in (x_in, y_in):
@@ -2527,8 +2527,8 @@ class Graph(Element):
     def DrawLine(self, point_from, point_to, color='black', width=1):
         """
 
-        :param point_from: 
-        :param point_to: 
+        :param point_from:
+        :param point_to:
         :param color:  (Default value = 'black')
         :param width:  (Default value = 1)
 
@@ -2550,7 +2550,7 @@ class Graph(Element):
     def DrawPoint(self, point, size=2, color='black'):
         """
 
-        :param point: 
+        :param point:
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = 2)
         :param color:  (Default value = 'black')
 
@@ -2573,8 +2573,8 @@ class Graph(Element):
     def DrawCircle(self, center_location, radius, fill_color=None, line_color='black'):
         """
 
-        :param center_location: 
-        :param radius: 
+        :param center_location:
+        :param radius:
         :param fill_color:  (Default value = None)
         :param line_color:  (Default value = 'black')
 
@@ -2597,8 +2597,8 @@ class Graph(Element):
     def DrawOval(self, top_left, bottom_right, fill_color=None, line_color=None):
         """
 
-        :param top_left: 
-        :param bottom_right: 
+        :param top_left:
+        :param bottom_right:
         :param fill_color:  (Default value = None)
         :param line_color:  (Default value = None)
 
@@ -2620,10 +2620,10 @@ class Graph(Element):
     def DrawArc(self, top_left, bottom_right, extent, start_angle, style=None, arc_color='black'):
         """
 
-        :param top_left: 
-        :param bottom_right: 
-        :param extent: 
-        :param start_angle: 
+        :param top_left:
+        :param bottom_right:
+        :param extent:
+        :param start_angle:
         :param style:  (Default value = None)
         :param arc_color:  (Default value = 'black')
 
@@ -2646,8 +2646,8 @@ class Graph(Element):
     def DrawRectangle(self, top_left, bottom_right, fill_color=None, line_color=None):
         """
 
-        :param top_left: 
-        :param bottom_right: 
+        :param top_left:
+        :param bottom_right:
         :param fill_color:  (Default value = None)
         :param line_color:  (Default value = None)
 
@@ -2669,8 +2669,8 @@ class Graph(Element):
     def DrawText(self, text, location, color='black', font=None, angle=0):
         """
 
-        :param text: 
-        :param location: 
+        :param text:
+        :param location:
         :param color:  (Default value = 'black')
         :param font: (common_key) specifies the font family, size, etc (Default value = None)
         :param angle:  (Default value = 0)
@@ -2738,7 +2738,7 @@ class Graph(Element):
     def DeleteFigure(self, id):
         """
 
-        :param id: 
+        :param id:
 
         """
         try:
@@ -2769,8 +2769,8 @@ class Graph(Element):
     def Move(self, x_direction, y_direction):
         """
 
-        :param x_direction: 
-        :param y_direction: 
+        :param x_direction:
+        :param y_direction:
 
         """
         zero_converted = self._convert_xy_to_canvas_xy(0, 0)
@@ -2785,9 +2785,9 @@ class Graph(Element):
     def MoveFigure(self, figure, x_direction, y_direction):
         """
 
-        :param figure: 
-        :param x_direction: 
-        :param y_direction: 
+        :param figure:
+        :param x_direction:
+        :param y_direction:
 
         """
         zero_converted = self._convert_xy_to_canvas_xy(0, 0)
@@ -2802,9 +2802,9 @@ class Graph(Element):
     def RelocateFigure(self, figure, x, y):
         """
 
-        :param figure: 
-        :param x: 
-        :param y: 
+        :param figure:
+        :param x:
+        :param y:
 
         """
         zero_converted = self._convert_xy_to_canvas_xy(0, 0)
@@ -2829,7 +2829,7 @@ class Graph(Element):
     def ButtonReleaseCallBack(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         self.ClickPosition = (None, None)
@@ -2848,7 +2848,7 @@ class Graph(Element):
     def ButtonPressCallBack(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         self.ClickPosition = self._convert_canvas_xy_to_xy(event.x, event.y)
@@ -2865,7 +2865,7 @@ class Graph(Element):
     def MotionCallBack(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if not self.MouseButtonDown:
@@ -2894,14 +2894,14 @@ class Graph(Element):
 # ---------------------------------------------------------------------- #
 class Frame(Element):
     """ """
-    
+
     def __init__(self, title, layout, title_color=None, background_color=None, title_location=None,
                  relief=DEFAULT_FRAME_RELIEF, size=(None, None), font=None, pad=None, border_width=None, key=None,
                  tooltip=None, right_click_menu=None, visible=True):
         """
 
-        :param title: 
-        :param layout: 
+        :param title:
+        :param layout:
         :param title_color:  (Default value = None)
         :param background_color: color of background (Default value = None)
         :param title_location:  (Default value = None)
@@ -2916,7 +2916,7 @@ class Frame(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -2943,7 +2943,7 @@ class Frame(Element):
     def AddRow(self, *args):
         """Parms are a variable number of Elements
 
-        :param *args: 
+        :param *args:
 
         """
         NumRows = len(self.Rows)  # number of existing rows is our row number
@@ -2962,7 +2962,7 @@ class Frame(Element):
     def Layout(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         for row in rows:
@@ -2971,7 +2971,7 @@ class Frame(Element):
     def _GetElementAtLocation(self, location):
         """
 
-        :param location: 
+        :param location:
 
         """
         (row_num, col_num) = location
@@ -2985,7 +2985,7 @@ class Frame(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if visible is False:
             self.TKFrame.pack_forget()
         elif visible is True:
@@ -3005,14 +3005,14 @@ class Frame(Element):
 # ---------------------------------------------------------------------- #
 class VerticalSeparator(Element):
     """ """
-    
+
     def __init__(self, pad=None):
         """
 
         :param pad: (common_key) Amount of padding to put around element (Default value = None)
 
         """
-        
+
         self.Orientation = 'vertical'  # for now only vertical works
 
         super().__init__(ELEM_TYPE_SEPARATOR, pad=pad)
@@ -3031,13 +3031,13 @@ VSep = VerticalSeparator
 # ---------------------------------------------------------------------- #
 class Tab(Element):
     """ """
-    
+
     def __init__(self, title, layout, title_color=None, background_color=None, font=None, pad=None, disabled=False,
                  border_width=None, key=None, tooltip=None, right_click_menu=None, visible=True):
         """
 
-        :param title: 
-        :param layout: 
+        :param title:
+        :param layout:
         :param title_color:  (Default value = None)
         :param background_color: color of background (Default value = None)
         :param font: (common_key) specifies the font family, size, etc (Default value = None)
@@ -3050,7 +3050,7 @@ class Tab(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -3077,7 +3077,7 @@ class Tab(Element):
     def AddRow(self, *args):
         """Parms are a variable number of Elements
 
-        :param *args: 
+        :param *args:
 
         """
         NumRows = len(self.Rows)  # number of existing rows is our row number
@@ -3096,7 +3096,7 @@ class Tab(Element):
     def Layout(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         for row in rows:
@@ -3110,7 +3110,7 @@ class Tab(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if disabled is None:
             return
         self.Disabled = disabled
@@ -3125,7 +3125,7 @@ class Tab(Element):
     def _GetElementAtLocation(self, location):
         """
 
-        :param location: 
+        :param location:
 
         """
         (row_num, col_num) = location
@@ -3146,13 +3146,13 @@ class Tab(Element):
 # ---------------------------------------------------------------------- #
 class TabGroup(Element):
     """ """
-    
+
     def __init__(self, layout, tab_location=None, title_color=None, selected_title_color=None, background_color=None,
                  font=None, change_submits=False, enable_events=False, pad=None, border_width=None, theme=None,
                  key=None, tooltip=None, visible=True):
         """
 
-        :param layout: 
+        :param layout:
         :param tab_location:  (Default value = None)
         :param title_color:  (Default value = None)
         :param selected_title_color:  (Default value = None)
@@ -3168,7 +3168,7 @@ class TabGroup(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -3195,7 +3195,7 @@ class TabGroup(Element):
     def AddRow(self, *args):
         """Parms are a variable number of Elements
 
-        :param *args: 
+        :param *args:
 
         """
         NumRows = len(self.Rows)  # number of existing rows is our row number
@@ -3214,7 +3214,7 @@ class TabGroup(Element):
     def Layout(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         for row in rows:
@@ -3223,7 +3223,7 @@ class TabGroup(Element):
     def _GetElementAtLocation(self, location):
         """
 
-        :param location: 
+        :param location:
 
         """
         (row_num, col_num) = location
@@ -3234,7 +3234,7 @@ class TabGroup(Element):
     def FindKeyFromTabName(self, tab_name):
         """
 
-        :param tab_name: 
+        :param tab_name:
 
         """
         for row in self.Rows:
@@ -3246,7 +3246,7 @@ class TabGroup(Element):
     def SelectTab(self, index):
         """
 
-        :param index: 
+        :param index:
 
         """
         try:
@@ -3267,7 +3267,7 @@ class TabGroup(Element):
 # ---------------------------------------------------------------------- #
 class Slider(Element):
     """ """
-    
+
     def __init__(self, range=(None, None), default_value=None, resolution=None, tick_interval=None, orientation=None,
                  disable_number_display=False, border_width=None, relief=None, change_submits=False,
                  enable_events=False, disabled=False, size=(None, None), font=None, background_color=None,
@@ -3295,7 +3295,7 @@ class Slider(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.TKScale = None  # type: tk.Scale
         self.Range = (1, 10) if range == (None, None) else range
         self.DefaultValue = self.Range[0] if default_value is None else default_value
@@ -3324,7 +3324,7 @@ class Slider(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if value is not None:
             try:
                 self.TKIntVar.set(value)
@@ -3345,7 +3345,7 @@ class Slider(Element):
     def _SliderChangedHandler(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         # first, get the results table built
@@ -3371,8 +3371,8 @@ class TkFixedFrame(tk.Frame):
     def __init__(self, master, **kwargs):
         """
 
-        :param master: 
-        :param **kwargs: 
+        :param master:
+        :param **kwargs:
 
         """
         tk.Frame.__init__(self, master, **kwargs)
@@ -3401,9 +3401,9 @@ class TkScrollableFrame(tk.Frame):
     def __init__(self, master, vertical_only, **kwargs):
         """
 
-        :param master: 
-        :param vertical_only: 
-        :param **kwargs: 
+        :param master:
+        :param vertical_only:
+        :param **kwargs:
 
         """
         tk.Frame.__init__(self, master, **kwargs)
@@ -3452,7 +3452,7 @@ class TkScrollableFrame(tk.Frame):
     def resize_frame(self, e):
         """
 
-        :param e: 
+        :param e:
 
         """
         self.canvas.itemconfig(self.frame_id, height=e.height, width=e.width)
@@ -3460,7 +3460,7 @@ class TkScrollableFrame(tk.Frame):
     def yscroll(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if event.num == 5 or event.delta < 0:
@@ -3471,7 +3471,7 @@ class TkScrollableFrame(tk.Frame):
     def xscroll(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         if event.num == 5 or event.delta < 0:
@@ -3482,8 +3482,8 @@ class TkScrollableFrame(tk.Frame):
     def bind_mouse_scroll(self, parent, mode):
         """
 
-        :param parent: 
-        :param mode: 
+        :param parent:
+        :param mode:
 
         """
         # ~~ Windows only
@@ -3506,12 +3506,12 @@ class TkScrollableFrame(tk.Frame):
 # ---------------------------------------------------------------------- #
 class Column(Element):
     """ """
-    
+
     def __init__(self, layout, background_color=None, size=(None, None), pad=None, scrollable=False,
                  vertical_scroll_only=False, right_click_menu=None, key=None, visible=True):
         """
 
-        :param layout: 
+        :param layout:
         :param background_color: color of background (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param pad: (common_key) Amount of padding to put around element (Default value = None)
@@ -3522,7 +3522,7 @@ class Column(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -3547,7 +3547,7 @@ class Column(Element):
     def AddRow(self, *args):
         """Parms are a variable number of Elements
 
-        :param *args: 
+        :param *args:
 
         """
         NumRows = len(self.Rows)  # number of existing rows is our row number
@@ -3566,7 +3566,7 @@ class Column(Element):
     def Layout(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         for row in rows:
@@ -3575,7 +3575,7 @@ class Column(Element):
     def _GetElementAtLocation(self, location):
         """
 
-        :param location: 
+        :param location:
 
         """
         (row_num, col_num) = location
@@ -3589,7 +3589,7 @@ class Column(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if visible is False:
             if self.TKColFrame:
                 self.TKColFrame.pack_forget()
@@ -3618,12 +3618,12 @@ class Column(Element):
 # ---------------------------------------------------------------------- #
 class Pane(Element):
     """ """
-    
+
     def __init__(self, pane_list, background_color=None, size=(None, None), pad=None, orientation='vertical',
                  show_handle=True, relief=RELIEF_RAISED, handle_size=None, border_width=None, key=None, visible=True):
         """
 
-        :param pane_list: 
+        :param pane_list:
         :param background_color: color of background (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param pad: (common_key) Amount of padding to put around element (Default value = None)
@@ -3636,7 +3636,7 @@ class Pane(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.UseDictionary = False
         self.ReturnValues = None
         self.ReturnValuesList = []
@@ -3665,7 +3665,7 @@ class Pane(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if visible is False:
             self.PanedWindow.pack_forget()
         elif visible is True:
@@ -3684,7 +3684,7 @@ class TKCalendar(ttk.Frame):
 
     def __init__(self, master=None, target_element=None, close_when_chosen=True, default_date=(None, None, None), **kw):
         """WIDGET-SPECIFIC OPTIONS
-        
+
             locale, firstweekday, year, month, selectbackground,
             selectforeground
 
@@ -3693,7 +3693,7 @@ class TKCalendar(ttk.Frame):
         :param close_when_chosen:  (Default value = True)
         :param default_date:  (Default value = (None)
         :param None:, None))
-        :param **kw: 
+        :param **kw:
 
         """
         self._TargetElement = target_element
@@ -3736,8 +3736,8 @@ class TKCalendar(ttk.Frame):
     def __setitem__(self, item, value):
         """
 
-        :param item: 
-        :param value: 
+        :param item:
+        :param value:
 
         """
         if item in ('year', 'month'):
@@ -3752,7 +3752,7 @@ class TKCalendar(ttk.Frame):
     def __getitem__(self, item):
         """
 
-        :param item: 
+        :param item:
 
         """
         if item in ('year', 'month'):
@@ -3808,8 +3808,8 @@ class TKCalendar(ttk.Frame):
     def __setup_selection(self, sel_bg, sel_fg):
         """
 
-        :param sel_bg: 
-        :param sel_fg: 
+        :param sel_bg:
+        :param sel_fg:
 
         """
         self._font = tkinter.font.Font()
@@ -3824,7 +3824,7 @@ class TKCalendar(ttk.Frame):
     def __minsize(self, evt):
         """
 
-        :param evt: 
+        :param evt:
 
         """
         width, height = self._calendar.master.geometry().split('x')
@@ -3849,8 +3849,8 @@ class TKCalendar(ttk.Frame):
     def _show_selection(self, text, bbox):
         """Configure canvas for a new selection.
 
-        :param text: 
-        :param bbox: 
+        :param text:
+        :param bbox:
 
         """
         x, y, width, height = bbox
@@ -3868,7 +3868,7 @@ class TKCalendar(ttk.Frame):
     def _pressed(self, evt):
         """Clicked somewhere in the calendar.
 
-        :param evt: 
+        :param evt:
 
         """
         x, y, widget = evt.x, evt.y, evt.widget
@@ -3945,12 +3945,12 @@ class TKCalendar(ttk.Frame):
 # ---------------------------------------------------------------------- #
 class Menu(Element):
     """ """
-    
+
     def __init__(self, menu_definition, background_color=None, size=(None, None), tearoff=False, pad=None, key=None,
                  visible=True):
         """
 
-        :param menu_definition: 
+        :param menu_definition:
         :param background_color: color of background (Default value = None)
         :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
         :param tearoff:  (Default value = False)
@@ -3959,7 +3959,7 @@ class Menu(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.BackgroundColor = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
         self.MenuDefinition = menu_definition
         self.TKMenu = None                  # type: tk.Menu
@@ -3973,7 +3973,7 @@ class Menu(Element):
     def _MenuItemChosenCallback(self, item_chosen):  # Menu Menu Item Chosen Callback
         """
 
-        :param item_chosen: 
+        :param item_chosen:
 
         """
         # print('IN MENU ITEM CALLBACK', item_chosen)
@@ -3986,11 +3986,11 @@ class Menu(Element):
     def Update(self, menu_definition, visible=None):
         """
 
-        :param menu_definition: 
+        :param menu_definition:
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         self.MenuDefinition = menu_definition
         self.TKMenu = tk.Menu(self.ParentForm.TKroot, tearoff=self.Tearoff)  # create the menubar
         menubar = self.TKMenu
@@ -4026,7 +4026,7 @@ MenuBar = Menu  # another name for Menu to make it clear it's the Menu Bar
 # ---------------------------------------------------------------------- #
 class Table(Element):
     """ """
-    
+
     def __init__(self, values, headings=None, visible_column_map=None, col_widths=None, def_col_width=10,
                  auto_size_columns=True, max_col_width=20, select_mode=None, display_row_numbers=False, num_rows=None,
                  row_height=None, font=None, justification='right', text_color=None, background_color=None,
@@ -4035,7 +4035,7 @@ class Table(Element):
                  key=None, tooltip=None, right_click_menu=None, visible=True):
         """
 
-        :param values: 
+        :param values:
         :param headings:  (Default value = None)
         :param visible_column_map:  (Default value = None)
         :param col_widths:  (Default value = None)
@@ -4065,7 +4065,7 @@ class Table(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.Values = values
         self.ColumnHeadings = headings
         self.ColumnsToDisplay = visible_column_map
@@ -4106,7 +4106,7 @@ class Table(Element):
         :param select_rows:  (Default value = None)
 
         """
-        
+
         if values is not None:
             children = self.TKTreeview.get_children()
             for i in children:
@@ -4135,7 +4135,7 @@ class Table(Element):
     def treeview_selected(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         selections = self.TKTreeview.selection()
@@ -4153,7 +4153,7 @@ class Table(Element):
     def treeview_double_click(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         selections = self.TKTreeview.selection()
@@ -4178,7 +4178,7 @@ class Table(Element):
 # ---------------------------------------------------------------------- #
 class Tree(Element):
     """ """
-    
+
     def __init__(self, data=None, headings=None, visible_column_map=None, col_widths=None, col0_width=10,
                  def_col_width=10, auto_size_columns=True, max_col_width=20, select_mode=None, show_expanded=False,
                  change_submits=False, enable_events=False, font=None, justification='right', text_color=None,
@@ -4211,7 +4211,7 @@ class Tree(Element):
         :param visible: set visibility state of the element (Default value = True)
 
         """
-        
+
         self.TreeData = data
         self.ColumnHeadings = headings
         self.ColumnsToDisplay = visible_column_map
@@ -4241,7 +4241,7 @@ class Tree(Element):
     def treeview_selected(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         selections = self.TKTreeview.selection()
@@ -4259,7 +4259,7 @@ class Tree(Element):
     def add_treeview_data(self, node):
         """
 
-        :param node: 
+        :param node:
 
         """
         # print(f'Inserting {node.key} under parent {node.parent}')
@@ -4293,7 +4293,7 @@ class Tree(Element):
         :param visible:  change visibility of element (Default value = None)
 
         """
-        
+
         if values is not None:
             children = self.TKTreeview.get_children()
             for i in children:
@@ -4338,10 +4338,10 @@ class TreeData(object):
         def __init__(self, parent, key, text, values, icon=None):
             """
 
-            :param parent: 
+            :param parent:
             :param key: (common_key) Used with window.FindElement and with return values
-            :param text: 
-            :param values: 
+            :param text:
+            :param values:
             :param icon:  (Default value = None)
 
             """
@@ -4355,7 +4355,7 @@ class TreeData(object):
         def _Add(self, node):
             """
 
-            :param node: 
+            :param node:
 
             """
             self.children.append(node)
@@ -4370,7 +4370,7 @@ class TreeData(object):
         """
 
         :param key: (common_key) Used with window.FindElement and with return values
-        :param node: 
+        :param node:
 
         """
         self.tree_dict[key] = node
@@ -4378,10 +4378,10 @@ class TreeData(object):
     def Insert(self, parent, key, text, values, icon=None):
         """
 
-        :param parent: 
+        :param parent:
         :param key: (common_key) Used with window.FindElement and with return values
-        :param text: 
-        :param values: 
+        :param text:
+        :param values:
         :param icon:  (Default value = None)
 
         """
@@ -4397,8 +4397,8 @@ class TreeData(object):
     def _NodeStr(self, node, level):
         """
 
-        :param node: 
-        :param level: 
+        :param node:
+        :param level:
 
         """
         return '\n'.join(
@@ -4426,8 +4426,8 @@ class ErrorElement(Element):
         """
 
         :param silent_on_error:  (Default value = True)
-        :param *args: 
-        :param **kwargs: 
+        :param *args:
+        :param **kwargs:
 
         """
         if not silent_on_error:
@@ -4459,7 +4459,7 @@ Stretch = ErrorElement
 # ------------------------------------------------------------------------- #
 class Window:
     """ """
-    
+
     NumOpenWindows = 0
     user_defined_icon = None
     hidden_master_root = None
@@ -4478,7 +4478,7 @@ class Window:
                  disable_minimize=False, right_click_menu=None, transparent_color=None, debugger_enabled=True):
         """
 
-        :param title: 
+        :param title:
         :param layout:  (Default value = None)
         :param default_element_size:  (Default value = DEFAULT_ELEMENT_SIZE)
         :param default_button_element_size:  (Default value = (None, None))
@@ -4512,7 +4512,7 @@ class Window:
         :param debugger_enabled:  (Default value = True)
 
         """
-        
+
         self.AutoSizeText = auto_size_text if auto_size_text is not None else DEFAULT_AUTOSIZE_TEXT
         self.AutoSizeButtons = auto_size_buttons if auto_size_buttons is not None else DEFAULT_AUTOSIZE_BUTTONS
         self.Title = title
@@ -4597,7 +4597,7 @@ class Window:
     def AddRow(self, *args):
         """Parms are a variable number of Elements
 
-        :param *args: 
+        :param *args:
 
         """
         NumRows = len(self.Rows)  # number of existing rows is our row number
@@ -4634,7 +4634,7 @@ class Window:
     def AddRows(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         for row in rows:
@@ -4643,7 +4643,7 @@ class Window:
     def Layout(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         self.AddRows(rows)
@@ -4653,7 +4653,7 @@ class Window:
     def LayoutAndRead(self, rows, non_blocking=False):
         """
 
-        :param rows: 
+        :param rows:
         :param non_blocking:  (Default value = False)
 
         """
@@ -4666,7 +4666,7 @@ class Window:
     def LayoutAndShow(self, rows):
         """
 
-        :param rows: 
+        :param rows:
 
         """
         raise DeprecationWarning('LayoutAndShow is no longer supported... ')
@@ -4743,7 +4743,7 @@ class Window:
     def _GetElementAtLocation(self, location):
         """
 
-        :param location: 
+        :param location:
 
         """
         (row_num, col_num) = location
@@ -4948,7 +4948,7 @@ class Window:
     def Fill(self, values_dict):
         """
 
-        :param values_dict: 
+        :param values_dict:
 
         """
         FillFormWithValues(self, values_dict)
@@ -4996,9 +4996,9 @@ class Window:
     def _BuildKeyDictForWindow(self, top_window, window, key_dict):
         """
 
-        :param top_window: 
-        :param window: 
-        :param key_dict: 
+        :param top_window:
+        :param window:
+        :param key_dict:
 
         """
         for row_num, row in enumerate(window.Rows):
@@ -5037,7 +5037,7 @@ class Window:
     def SaveToDisk(self, filename):
         """
 
-        :param filename: 
+        :param filename:
 
         """
         try:
@@ -5050,7 +5050,7 @@ class Window:
     def LoadFromDisk(self, filename):
         """
 
-        :param filename: 
+        :param filename:
 
         """
         try:
@@ -5070,8 +5070,8 @@ class Window:
     def Move(self, x, y):
         """
 
-        :param x: 
-        :param y: 
+        :param x:
+        :param y:
 
         """
         try:
@@ -5102,7 +5102,7 @@ class Window:
     def StartMove(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         try:
@@ -5115,7 +5115,7 @@ class Window:
     def StopMove(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         try:
@@ -5128,7 +5128,7 @@ class Window:
     def OnMotion(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         try:
@@ -5144,7 +5144,7 @@ class Window:
     def _KeyboardCallback(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         self.LastButtonClicked = None
@@ -5161,7 +5161,7 @@ class Window:
     def _MouseWheelCallback(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         self.LastButtonClicked = None
@@ -5259,7 +5259,7 @@ class Window:
     def SetAlpha(self, alpha):
         """
 
-        :param alpha: 
+        :param alpha:
 
         """
         # Change the window's transparency
@@ -5276,7 +5276,7 @@ class Window:
     def AlphaChannel(self, alpha):
         """
 
-        :param alpha: 
+        :param alpha:
 
         """
         self._AlphaChannel = alpha
@@ -5304,7 +5304,7 @@ class Window:
     def Size(self, size):
         """
 
-        :param size: (common_key) 
+        :param size: (common_key)
 
         """
         try:
@@ -5321,7 +5321,7 @@ class Window:
     def SetTransparentColor(self, color):
         """
 
-        :param color: 
+        :param color:
 
         """
         try:
@@ -5344,7 +5344,7 @@ class Window:
     def _callback_main_debugger_window_create_keystroke(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         Debugger.debugger._build_main_debugger_window()
@@ -5352,7 +5352,7 @@ class Window:
     def _callback_popout_window_create_keystroke(self, event):
         """
 
-        :param event: 
+        :param event:
 
         """
         Debugger.debugger._build_floating_window()
@@ -5377,7 +5377,7 @@ class Window:
     def __exit__(self, *a):
         """
 
-        :param *a: 
+        :param *a:
 
         """
         self.__del__()
@@ -5427,7 +5427,7 @@ def FolderBrowse(button_text='Browse', target=(ThisRow, -1), initial_folder=None
     :param key: (common_key) Used with window.FindElement and with return values (Default value = None)
 
     """
-    
+
     return Button(button_text=button_text, button_type=BUTTON_TYPE_BROWSE_FOLDER, target=target,
                   initial_folder=initial_folder, tooltip=tooltip, size=size, auto_size_button=auto_size_button,
                   disabled=disabled, button_color=button_color, change_submits=change_submits,
@@ -5834,7 +5834,7 @@ def SimpleButton(button_text, image_filename=None, image_data=None, image_size=(
                  font=None, bind_return_key=False, disabled=False, focus=False, pad=None, key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None, None))
@@ -5865,7 +5865,7 @@ def CloseButton(button_text, image_filename=None, image_data=None, image_size=(N
                 bind_return_key=False, disabled=False, focus=False, pad=None, key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None, None))
@@ -5899,7 +5899,7 @@ def ReadButton(button_text, image_filename=None, image_data=None, image_size=(No
                bind_return_key=False, disabled=False, focus=False, pad=None, key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None, None))
@@ -5934,7 +5934,7 @@ def RealtimeButton(button_text, image_filename=None, image_data=None, image_size
                    font=None, disabled=False, bind_return_key=False, focus=False, pad=None, key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None, None))
@@ -5965,7 +5965,7 @@ def DummyButton(button_text, image_filename=None, image_data=None, image_size=(N
                 disabled=False, bind_return_key=False, focus=False, pad=None, key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None, None))
@@ -5998,11 +5998,11 @@ def CalendarButton(button_text, target=(None, None), close_when_date_chosen=True
                    key=None, locale=None, format=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param target:  (Default value = (None, None))
     :param close_when_date_chosen:  (Default value = True)
     :param default_date_m_d_y:  (Default value = (None)
-    :param None: 
+    :param None:
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
     :param image_size:  (Default value = (None)
@@ -6041,7 +6041,7 @@ def ColorChooserButton(button_text, target=(None, None), image_filename=None, im
                        key=None):
     """
 
-    :param button_text: 
+    :param button_text:
     :param target:  (Default value = (None, None))
     :param image_filename:  (Default value = None)
     :param image_data:  (Default value = None)
@@ -6072,9 +6072,9 @@ def ColorChooserButton(button_text, target=(None, None), image_filename=None, im
 def AddToReturnDictionary(form, element, value):
     """
 
-    :param form: 
-    :param element: 
-    :param value: 
+    :param form:
+    :param element:
+    :param value:
 
     """
     form.ReturnValuesDictionary[element.Key] = value
@@ -6090,8 +6090,8 @@ def AddToReturnDictionary(form, element, value):
 def AddToReturnList(form, value):
     """
 
-    :param form: 
-    :param value: 
+    :param form:
+    :param value:
 
     """
     form.ReturnValuesList.append(value)
@@ -6102,7 +6102,7 @@ def AddToReturnList(form, value):
 def InitializeResults(form):
     """
 
-    :param form: 
+    :param form:
 
     """
     BuildResults(form, True, form)
@@ -6114,7 +6114,7 @@ def InitializeResults(form):
 def DecodeRadioRowCol(RadValue):
     """
 
-    :param RadValue: 
+    :param RadValue:
 
     """
     container = RadValue // 100000
@@ -6126,9 +6126,9 @@ def DecodeRadioRowCol(RadValue):
 def EncodeRadioRowCol(container, row, col):
     """
 
-    :param container: 
-    :param row: 
-    :param col: 
+    :param container:
+    :param row:
+    :param col:
 
     """
     RadValue = container * 100000 + row * 1000 + col
@@ -6141,9 +6141,9 @@ def EncodeRadioRowCol(container, row, col):
 def BuildResults(form, initialize_only, top_level_form):
     """
 
-    :param form: 
-    :param initialize_only: 
-    :param top_level_form: 
+    :param form:
+    :param initialize_only:
+    :param top_level_form:
 
     """
     # Results for elements are:
@@ -6164,9 +6164,9 @@ def BuildResults(form, initialize_only, top_level_form):
 def BuildResultsForSubform(form, initialize_only, top_level_form):
     """
 
-    :param form: 
-    :param initialize_only: 
-    :param top_level_form: 
+    :param form:
+    :param initialize_only:
+    :param top_level_form:
 
     """
     button_pressed_text = top_level_form.LastButtonClicked
@@ -6371,8 +6371,8 @@ def BuildResultsForSubform(form, initialize_only, top_level_form):
 def FillFormWithValues(form, values_dict):
     """
 
-    :param form: 
-    :param values_dict: 
+    :param form:
+    :param values_dict:
 
     """
     FillSubformWithValues(form, values_dict)
@@ -6381,8 +6381,8 @@ def FillFormWithValues(form, values_dict):
 def FillSubformWithValues(form, values_dict):
     """
 
-    :param form: 
-    :param values_dict: 
+    :param form:
+    :param values_dict:
 
     """
     for row_num, row in enumerate(form.Rows):
@@ -6425,7 +6425,7 @@ def FillSubformWithValues(form, values_dict):
 def _FindElementFromKeyInSubForm(form, key):
     """
 
-    :param form: 
+    :param form:
     :param key: (common_key) Used with window.FindElement and with return values
 
     """
@@ -6458,7 +6458,7 @@ def _FindElementFromKeyInSubForm(form, key):
 def _FindElementWithFocusInSubForm(form):
     """
 
-    :param form: 
+    :param form:
 
     """
     for row_num, row in enumerate(form.Rows):
@@ -6497,9 +6497,9 @@ if sys.version_info[0] >= 3:
     def AddMenuItem(top_menu, sub_menu_info, element, is_sub_menu=False, skip=False):
         """
 
-        :param top_menu: 
-        :param sub_menu_info: 
-        :param element: 
+        :param top_menu:
+        :param sub_menu_info:
+        :param element:
         :param is_sub_menu:  (Default value = False)
         :param skip:  (Default value = False)
 
@@ -6556,9 +6556,9 @@ else:
     def AddMenuItem(top_menu, sub_menu_info, element, is_sub_menu=False, skip=False):
         """
 
-        :param top_menu: 
-        :param sub_menu_info: 
-        :param element: 
+        :param top_menu:
+        :param sub_menu_info:
+        :param element:
         :param is_sub_menu:  (Default value = False)
         :param skip:  (Default value = False)
 
@@ -6636,9 +6636,9 @@ else:
 def PackFormIntoFrame(form, containing_frame, toplevel_form):
     """
 
-    :param form: 
-    :param containing_frame: 
-    :param toplevel_form: 
+    :param form:
+    :param containing_frame:
+    :param toplevel_form:
 
     """
     def CharWidthInPixels():
@@ -7771,7 +7771,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 def add_treeview_data(node):
                     """
 
-                    :param node: 
+                    :param node:
 
                     """
                     # print(f'Inserting {node.key} under parent {node.parent}')
@@ -7895,7 +7895,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
 def ConvertFlexToTK(MyFlexForm):
     """
 
-    :param MyFlexForm: 
+    :param MyFlexForm:
 
     """
     MyFlexForm  # type: Window
@@ -7943,7 +7943,7 @@ def ConvertFlexToTK(MyFlexForm):
 def StartupTK(my_flex_form: Window):
     """
 
-    :param my_flex_form: Window: 
+    :param my_flex_form: Window:
 
     """
     # global _my_windows
@@ -8049,8 +8049,8 @@ def StartupTK(my_flex_form: Window):
 def _GetNumLinesNeeded(text, max_line_width):
     """
 
-    :param text: 
-    :param max_line_width: 
+    :param text:
+    :param max_line_width:
 
     """
     if max_line_width == 0:
@@ -8070,7 +8070,7 @@ def _GetNumLinesNeeded(text, max_line_width):
 def ConvertArgsToSingleString(*args):
     """
 
-    :param *args: 
+    :param *args:
 
     """
     max_line_total, width_used, total_lines, = 0, 0, 0
@@ -8105,11 +8105,11 @@ class QuickMeter(object):
                  button_color=(None, None), size=DEFAULT_PROGRESS_BAR_SIZE, border_width=None, grab_anywhere=False):
         """
 
-        :param title: 
-        :param current_value: 
-        :param max_value: 
+        :param title:
+        :param current_value:
+        :param max_value:
         :param key: (common_key) Used with window.FindElement and with return values
-        :param *args: 
+        :param *args:
         :param orientation:  (Default value = 'v')
         :param bar_color:  (Default value = (None, None))
         :param button_color:  (Default value = (None)
@@ -8135,7 +8135,7 @@ class QuickMeter(object):
     def BuildWindow(self, *args):
         """
 
-        :param *args: 
+        :param *args:
 
         """
         layout = []
@@ -8165,9 +8165,9 @@ class QuickMeter(object):
     def UpdateMeter(self, current_value, max_value, *args):  ### support for *args when updating
         """
 
-        :param current_value: 
-        :param max_value: 
-        :param *args: 
+        :param current_value:
+        :param max_value:
+        :param *args:
 
         """
         self.current_value = current_value
@@ -8219,11 +8219,11 @@ def OneLineProgressMeter(title, current_value, max_value, key, *args, orientatio
                          button_color=None, size=DEFAULT_PROGRESS_BAR_SIZE, border_width=None, grab_anywhere=False):
     """
 
-    :param title: 
-    :param current_value: 
-    :param max_value: 
+    :param title:
+    :param current_value:
+    :param max_value:
     :param key: (common_key) Used with window.FindElement and with return values
-    :param *args: 
+    :param *args:
     :param orientation:  (Default value = 'v')
     :param bar_color:  (Default value = (None, None))
     :param button_color:  (Default value = None)
@@ -8264,7 +8264,7 @@ def OneLineProgressMeterCancel(key):
 def GetComplimentaryHex(color):
     """
 
-    :param color: 
+    :param color:
 
     """
     # strip the # from the beginning
@@ -8329,7 +8329,7 @@ class DebugWin():
     def Print(self, *args, end=None, sep=None):
         """
 
-        :param *args: 
+        :param *args:
         :param end:  (Default value = None)
         :param sep:  (Default value = None)
 
@@ -8372,7 +8372,7 @@ def EasyPrint(*args, size=(None, None), end=None, sep=None, location=(None, None
               no_button=False, grab_anywhere=False, keep_on_top=False, do_not_reroute_stdout=True):
     """
 
-    :param *args: 
+    :param *args:
     :param size: (common_key) (w,h) w=characters-wide, h=rows-high (Default value = (None, None))
     :param end:  (Default value = None)
     :param sep:  (Default value = None)
@@ -8409,7 +8409,7 @@ def PopupScrolled(*args, button_color=None, yes_no=False, auto_close=False, auto
                   location=(None, None), title=None, non_blocking=False):
     """
 
-    :param *args: 
+    :param *args:
     :param button_color:  (Default value = None)
     :param yes_no:  (Default value = False)
     :param auto_close:  (Default value = False)
@@ -8469,7 +8469,7 @@ ScrolledTextBox = PopupScrolled
 def SetGlobalIcon(icon):
     """
 
-    :param icon: 
+    :param icon:
 
     """
     # global _my_windows
@@ -8963,7 +8963,7 @@ def ListOfLookAndFeelValues():
 def ChangeLookAndFeel(index):
     """
 
-    :param index: 
+    :param index:
 
     """
     # global LOOK_AND_FEEL_TABLE
@@ -9006,7 +9006,7 @@ sprint = ScrolledTextBox
 def ObjToStringSingleObj(obj):
     """
 
-    :param obj: 
+    :param obj:
 
     """
     if obj is None:
@@ -9018,7 +9018,7 @@ def ObjToStringSingleObj(obj):
 def ObjToString(obj, extra='    '):
     """
 
-    :param obj: 
+    :param obj:
     :param extra:  (Default value = '    ')
 
     """
@@ -9052,7 +9052,7 @@ def Popup(*args, title=None, button_color=None, background_color=None, text_colo
     """Popup - Display a popup box with as many parms as you wish to include
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9153,7 +9153,7 @@ def Popup(*args, title=None, button_color=None, background_color=None, text_colo
 def MsgBox(*args):
     """
 
-    :param *args: 
+    :param *args:
 
     """
     raise DeprecationWarning('MsgBox is no longer supported... change your call to Popup')
@@ -9166,7 +9166,7 @@ def PopupNoButtons(*args, title=None, button_color=None, background_color=None, 
     """Show a Popup but without any buttons
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9199,7 +9199,7 @@ def PopupNonBlocking(*args, title=None, button_type=POPUP_BUTTONS_OK, button_col
     """Show Popup box and immediately return (does not block)
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_type:  (Default value = POPUP_BUTTONS_OK)
     :param button_color:  (Default value = None)
@@ -9235,7 +9235,7 @@ def PopupQuick(*args, title=None, button_type=POPUP_BUTTONS_OK, button_color=Non
     """Show Popup box that doesn't block and closes itself
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_type:  (Default value = POPUP_BUTTONS_OK)
     :param button_color:  (Default value = None)
@@ -9269,7 +9269,7 @@ def PopupQuickMessage(*args, title=None, button_type=POPUP_BUTTONS_NO_BUTTONS, b
     """Show Popup box that doesn't block and closes itself
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_type:  (Default value = POPUP_BUTTONS_NO_BUTTONS)
     :param button_color:  (Default value = None)
@@ -9302,7 +9302,7 @@ def PopupNoTitlebar(*args, title=None, button_type=POPUP_BUTTONS_OK, button_colo
     """Display a Popup without a titlebar.   Enables grab anywhere so you can move it
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_type:  (Default value = POPUP_BUTTONS_OK)
     :param button_color:  (Default value = None)
@@ -9340,7 +9340,7 @@ def PopupAutoClose(*args, title=None, button_type=POPUP_BUTTONS_OK, button_color
     """Popup that closes itself after some time period
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_type:  (Default value = POPUP_BUTTONS_OK)
     :param button_color:  (Default value = None)
@@ -9375,7 +9375,7 @@ def PopupError(*args, title=None, button_color=(None, None), background_color=No
     """Popup with colored button and 'Error' as button text
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = (None, None))
     :param background_color: color of background (Default value = None)
@@ -9407,7 +9407,7 @@ def PopupCancel(*args, title=None, button_color=None, background_color=None, tex
     """Display Popup with "cancelled" button text
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9438,7 +9438,7 @@ def PopupOK(*args, title=None, button_color=None, background_color=None, text_co
     """Display Popup with OK button only
     :return:
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9468,7 +9468,7 @@ def PopupOKCancel(*args, title=None, button_color=None, background_color=None, t
     """Display popup with OK and Cancel buttons
     :return: OK, Cancel or None
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9499,7 +9499,7 @@ def PopupYesNo(*args, title=None, button_color=None, background_color=None, text
     """Display Popup with Yes and No buttons
     :return: Yes, No or None
 
-    :param *args: 
+    :param *args:
     :param title:  (Default value = None)
     :param button_color:  (Default value = None)
     :param background_color: color of background (Default value = None)
@@ -9536,7 +9536,7 @@ def PopupGetFolder(message, title=None, default_path='', no_window=False, size=(
     """Display popup with text entry field and browse button. Browse for folder
     :return: Contents of text field. None if closed using X or cancelled
 
-    :param message: 
+    :param message:
     :param title:  (Default value = None)
     :param default_path:  (Default value = '')
     :param no_window:  (Default value = False)
@@ -9611,7 +9611,7 @@ def PopupGetFile(message, title=None, default_path='', default_extension='', sav
     """Display popup with text entry field and browse button. Browse for file
     :return:  string representing the path chosen, None if cancelled or window closed with X
 
-    :param message: 
+    :param message:
     :param title:  (Default value = None)
     :param default_path:  (Default value = '')
     :param default_extension:  (Default value = '')
@@ -9703,7 +9703,7 @@ def PopupGetText(message, title=None, default_text='', password_char='', size=(N
     """Display Popup with text entry field
     :return: Text entered or None if window was closed
 
-    :param message: 
+    :param message:
     :param title:  (Default value = None)
     :param default_text:  (Default value = '')
     :param password_char: Passwork character if this is a password field (Default value = '')
@@ -9743,7 +9743,7 @@ def PopupAnimated(image_source, message=None, background_color=None, text_color=
                   time_between_frames=0, transparent_color=None):
     """
 
-    :param image_source: 
+    :param image_source:
     :param message:  (Default value = None)
     :param background_color: color of background (Default value = None)
     :param text_color: color of the text (Default value = None)
@@ -9838,7 +9838,7 @@ class Debugger():
     def _build_main_debugger_window_callback(self, events):
         """
 
-        :param events: 
+        :param events:
 
         """
         self._build_main_debugger_window()
@@ -9855,7 +9855,7 @@ class Debugger():
         def InVar(key1):
             """
 
-            :param key1: 
+            :param key1:
 
             """
             row1 = [T('    '),
@@ -9918,8 +9918,8 @@ class Debugger():
     def _refresh_main_debugger_window(self, mylocals, myglobals):
         """
 
-        :param mylocals: 
-        :param myglobals: 
+        :param mylocals:
+        :param myglobals:
 
         """
         if not self.watcher_window:     # if there is no window setup, nothing to do
@@ -10053,7 +10053,7 @@ class Debugger():
     def _display_all_vars(self, dict):
         """
 
-        :param dict: 
+        :param dict:
 
         """
         num_cols = 3
@@ -10097,7 +10097,7 @@ class Debugger():
     def _choose_auto_watches(self, my_locals):
         """
 
-        :param my_locals: 
+        :param my_locals:
 
         """
         ChangeLookAndFeel(COLOR_SCHEME)
@@ -10287,7 +10287,7 @@ def show_debugger_window(location=(None, None), *args):
     """
 
     :param location:  (Default value = (None, None))
-    :param *args: 
+    :param *args:
 
     """
     if Debugger.debugger is None:
@@ -10311,7 +10311,7 @@ def show_debugger_popout_window(location=(None, None), *args):
     """
 
     :param location:  (Default value = (None, None))
-    :param *args: 
+    :param *args:
 
     """
     if Debugger.debugger is None:
@@ -10358,14 +10358,14 @@ def refresh_debugger():
 
 
 """
-                       d8b          
-                       Y8P          
+                       d8b
+                       Y8P
 
-88888b.d88b.   8888b.  888 88888b.  
-888 "888 "88b     "88b 888 888 "88b 
-888  888  888 .d888888 888 888  888 
-888  888  888 888  888 888 888  888 
-888  888  888 "Y888888 888 888  888 
+88888b.d88b.   8888b.  888 88888b.
+888 "888 "88b     "88b 888 888 "88b
+888  888  888 .d888888 888 888  888
+888  888  888 888  888 888 888  888
+888  888  888 "Y888888 888 888  888
 
 """
 

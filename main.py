@@ -8,28 +8,20 @@ from tempfile import TemporaryFile, NamedTemporaryFile
 import PySimpleGUI as sg
 from sg_extensions import error_popup
 import os, sys
+from PIL import Image, ImageTk
+import io, base64
 
-VERSION = 'v3.1.2'
-
-if getattr(sys, 'frozen', False):
-        # running in a bundle
-        DATA_LOC = os.path.join(sys._MEIPASS, 'data')
-else :
-        # running live
-        DATA_LOC = os.path.abspath('./data')
+from constants import VERSION, DATA_LOC, EXT_LIST
 
 icon_loc = str(os.path.join(DATA_LOC, 'icon.ico'))
-
 sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)
 
-EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
-            'ico', 'im', 'jfif', 'jpe', 'jpg', 'jpeg', 'mpo', 'pcx',
-            'png', 'pbm', 'pgm', 'ppm', 'bw', 'rgb', 'rgba', 'sgi',
-            'tga', 'bsdf', 'npz']
-
-if 'win' in sys.platform:
+if 'win' in sys.platform and sys.platform != 'darwin':
     import ctypes
     ctypes.windll.shcore.SetProcessDpiAwareness(1)
+
+if sys.platform == 'darwin':
+    lospec.BTN_TXT_C = '#000'
 
 
 def do_palettize(palette, image, *args, **kwargs):
@@ -41,49 +33,22 @@ def do_palettize(palette, image, *args, **kwargs):
     return palettizer.palettize(palette, image, *args, **kwargs)
 
 
-shuffle = np.random.RandomState(seed=42).permutation
-def get_div_points(a, b):
-        Neach_section, extras = divmod(a, b)
-        section_sizes = shuffle(extras * [Neach_section + 1] +
-                                (b - extras) * [Neach_section])
-        return np.array(section_sizes, dtype=np.intp).cumsum()
-
-
-def resize_img(image, side_length):
-    h, w = image.shape[:2]
-    max_wh = max(w, h)
-
-    if h > w:
-        height = side_length
-        width = int(w * side_length / h)
-    else:
-        width = side_length
-        height = int(h * side_length / w)
-
-    if side_length > max_wh:
-        reps = max(width, height) // max_wh
-        img = np.repeat(image, reps, axis=1)  # X
-        img = np.repeat(img, reps, axis=0)  # Y
-    elif side_length == max_wh:
-        img = image
-    else:
-        arr = np.array_split(image, get_div_points(w, width), axis=1)  # X
-        arr = [np.mean(chunk, axis=1, keepdims=True) for chunk in arr]  # X
-        arr = np.concatenate(arr, axis=1)  # X
-
-        arr = np.array_split(arr, get_div_points(h, height), axis=0)  # Y
-        arr = [np.mean(chunk, axis=0, keepdims=True) for chunk in arr]  # Y
-        img = np.concatenate(arr, axis=0).astype(np.uint8)  # Y
-
-    return img
-
-
+THUMBNAIL_SIZE = (610, 610)
 def image_popup(image):
-    temp_img = resize_img(image, 512)
-    temp = NamedTemporaryFile(suffix='.gif', mode='wb', delete=False)
-    temp_name = temp.name
-    imwrite(temp, temp_img, format='gif')
-    layout = [[sg.Image(filename=temp_name, size=(512,512))],
+    temp_img = Image.fromarray(image)
+    w, h = temp_img.size
+
+    if w > THUMBNAIL_SIZE[0] or h > THUMBNAIL_SIZE[1]:
+        temp_img.thumbnail(THUMBNAIL_SIZE, Image.LANCZOS)
+    else:
+        ratio = min(THUMBNAIL_SIZE[0] / w, THUMBNAIL_SIZE[1] / h)
+        temp_img = temp_img.resize((int(w * ratio), int(h * ratio)), Image.NEAREST)
+
+    with io.BytesIO() as im_bytes:
+        temp_img.save(im_bytes, format="GIF")
+        im_bytes = im_bytes.getvalue()
+
+    layout = [[sg.Image(data=im_bytes, size=THUMBNAIL_SIZE)],
               [sg.Text('Save location', justification='right'), sg.InputText(do_not_clear=True, key='file'), sg.SaveAs()],
               [sg.Save(), sg.Cancel()]]
 
@@ -103,8 +68,6 @@ def image_popup(image):
         else:
             break
     window.grab_release().Close()
-    temp.close()
-    os.remove(temp_name)
 
 
 ################################################################################
@@ -197,15 +160,17 @@ if __name__ == '__main__':
                 image = None
 
             if (palette is not None) and (image is not None):
+                # try:
+                window.Disable()
+                output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
+                window.Enable()
+                # except Exception as e:
+                #     error_popup(e, 'Error during palettization: ')
+                #     image = None
+                # else:
                 try:
-                    output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
+                    image_popup(output_image)
                 except Exception as e:
-                    error_popup(e, 'Error during palettization: ')
-                    image = None
-                else:
-                    try:
-                        image_popup(output_image)
-                    except Exception as e:
-                        error_popup(e)
+                    error_popup(e)
 
     window.Close()

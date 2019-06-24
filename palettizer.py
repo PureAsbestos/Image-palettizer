@@ -1,23 +1,26 @@
 import numpy as np
 from colorspacious import deltaE
 from dithermaps import DIFFUSION_MAPS, get_bayer_matrix
+from constants import DATA_LOC
 import PySimpleGUI as sg
+import sg_extensions
 from psutil import virtual_memory
+import multiprocess as multi
+import os
 
 
 def index2rgb(arr, pal):
-    channels = []
-    for i in range(3):
-        channels.append(pal[arr, i])
+    channels = [pal[arr, i] for i in range(3)]
     out = np.stack(channels, axis=-1)
     return out
 
 
-def counter(iterable, message='', id='single'):
-    sg.OneLineProgressMeter(message, 0, len(iterable), id)
+def counter(iterable, message='', id='single', end=None):
+    end = len(iterable) if end is None else end
+    sg.OneLineProgressMeter(message, 0, end, id)
     for i, val in enumerate(iterable):
         yield val
-        if not sg.OneLineProgressMeter(message, i+1, len(iterable), id):
+        if not sg.OneLineProgressMeter(message, i+1, end, id):
             break
 
 
@@ -25,10 +28,10 @@ def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
     splits = np.ceil((len(color2)**0.5555) * image.shape[0] * image.shape[1] / split_val)
     image_sliced = np.array_split(image, splits)
-    image_output_sliced = [
-        deltaE(image_sec, color2, *args, **kwargs)
-        for image_sec in counter(image_sliced, 'Quantizing...')
-        ]
+    pool = multi.Pool(processes=min([multi.cpu_count(), splits]))
+    image_output_sliced = pool.imap(lambda x: deltaE(x, color2, *args, **kwargs), image_sliced)
+    image_output_sliced = [a for a in counter(image_output_sliced, 'Quantizing...', end=splits)]
+    pool.close()
     return np.concatenate(image_output_sliced)
 
 
@@ -49,7 +52,7 @@ def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed
     image_quantized = np.array(distances.argmin(axis=2))
 
     # Dithering
-    if (not use_ordered) and (not dither_matrix is None):
+    if (not use_ordered) and (dither_matrix is not None):
         quant_error = distances.min(axis=2)
         for row in range(distances.shape[0]):
             if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):
@@ -67,7 +70,7 @@ def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed
                         pass
         image_indexed = distances.argmin(axis=2)
     elif use_ordered:
-        image_quant2 = np.argpartition(distances, 1)[..., 1]
+        image_quant2 = np.argpartition(distances, 1)[..., 1]  # Get the second closest colors
         image_indexed = np.zeros(distances.shape[:2]).astype('intp')
         for row in range(distances.shape[0]):
             if not sg.OneLineProgressMeter('Dithering...', row+1, distances.shape[0], 'single'):

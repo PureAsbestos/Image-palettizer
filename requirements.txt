@@ -12,3 +12,6 @@ psutil>=5.6.2
     idna<2.9,>=2.5
     urllib3!=1.25.0,!=1.25.1,<1.26,>=1.21.1
 requests>=2.21.0
+
+    dill>=0.2.9
+multiprocess>=0.70.7

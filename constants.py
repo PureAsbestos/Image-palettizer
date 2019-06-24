@@ -7,7 +7,7 @@ else :
         # running live
         DATA_LOC = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'data')
 
-VERSION = 'v3.1.2'
+VERSION = 'v3.2.0'
 
 EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
             'ico', 'im', 'jfif', 'jpe', 'jpg', 'jpeg', 'mpo', 'pcx',

@@ -164,17 +164,15 @@ if __name__ == '__main__':
                 image = None
 
             if (palette is not None) and (image is not None):
-                # try:
-                window.Disable()
-                output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
-                window.Enable()
-                # except Exception as e:
-                #     error_popup(e, 'Error during palettization: ')
-                #     image = None
-                # else:
                 try:
-                    image_popup(output_image)
+                    output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
                 except Exception as e:
-                    error_popup(e)
+                    error_popup(e, 'Error during palettization: ')
+                    image = None
+                else:
+                    try:
+                        image_popup(output_image)
+                    except Exception as e:
+                        error_popup(e)
 
     window.Close()

@@ -6,7 +6,7 @@ import PySimpleGUI as sg
 import sg_extensions
 from psutil import virtual_memory
 import multiprocess as multi
-import os
+import os, math
 
 
 def index2rgb(arr, pal):
@@ -26,7 +26,7 @@ def counter(iterable, message='', id='single', end=None):
 
 def split_deltaE(image, color2, *args, **kwargs):
     split_val = 25000 * np.ceil(virtual_memory()[1] / 1024**3)
-    splits = np.ceil((len(color2)**0.5555) * image.shape[0] * image.shape[1] / split_val)
+    splits = math.ceil((len(color2)**0.5555) * image.shape[0] * image.shape[1] / split_val)
     image_sliced = np.array_split(image, splits)
     pool = multi.Pool(processes=min([multi.cpu_count(), splits]))
     image_output_sliced = pool.imap(lambda x: deltaE(x, color2, *args, **kwargs), image_sliced)

@@ -36,7 +36,7 @@ Besides the core features that have been discussed, this program offers:
 - The ability to dither with 4 sizes of Bayer matrix (2x2, 3x3, 4x4, 8x8)
 - Integration with [Lospec](https://lospec.com/palette-list) for easy retrieval and use of color palettes
 - The ability to work with large images (note that *extremely* wide images may take up too much RAM)
-- Partial concurrency for faster run time on multi-core systems
+- Partial parallelism for faster run time on multi-core systems
 
 ## To-do
 - Improve code commentary

@@ -1,5 +1,4 @@
-import os
-import sys
+import os, sys
 
 # Based on https://learning-python.com/cgi/showcode.py?name=pyedit-products/unzipped/multiprocessing_exe_patch.py
 

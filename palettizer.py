@@ -1,18 +1,20 @@
 import numpy as np
+import multiprocess as multi
 from colorspacious import deltaE
+from psutil import virtual_memory
+
+import os, math
+
 from dithermaps import DIFFUSION_MAPS, get_bayer_matrix
 from constants import DATA_LOC
 import PySimpleGUI as sg
 import sg_extensions
-from psutil import virtual_memory
-import multiprocess as multi
-import os, math
+
 
 
 def index2rgb(arr, pal):
     channels = [pal[arr, i] for i in range(3)]
-    out = np.stack(channels, axis=-1)
-    return out
+    return np.stack(channels, axis=-1)
 
 
 def counter(iterable, message='', id='single', end=None):

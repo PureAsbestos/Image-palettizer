@@ -1,4 +1,4 @@
-import sys, os
+import os, sys
 
 if getattr(sys, 'frozen', False):
         # running in a bundle

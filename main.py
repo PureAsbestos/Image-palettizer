@@ -1,16 +1,21 @@
-import palettizer
-import loadgpl
-import lospec
-from imageio import imread, imwrite
+# Dependencies
 import numpy as np
-from dithermaps import *
-from tempfile import TemporaryFile, NamedTemporaryFile
-import PySimpleGUI as sg
-from sg_extensions import error_popup
-import os, sys, io
+from imageio import imread, imwrite
 from PIL import Image, ImageTk
 import multiprocess as multi
+
+# Standard library
+import os, sys, io
+
+# Local
+import PySimpleGUI as sg
+from dithermaps import *
+import loadgpl
+import lospec
 import multipatch
+import palettizer
+from sg_extensions import error_popup
+
 
 from constants import VERSION, DATA_LOC, EXT_LIST
 

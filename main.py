@@ -16,19 +16,19 @@ import multipatch
 import palettizer
 from sg_extensions import error_popup
 
-
+# Constants
 from constants import VERSION, DATA_LOC, EXT_LIST
 
 icon_loc = str(os.path.join(DATA_LOC, 'icon.ico'))
-sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)
+sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)  # Set default theme and icon
 
 if sys.platform.startswith('win'):
     import ctypes
-    ctypes.windll.shcore.SetProcessDpiAwareness(1)
+    ctypes.windll.shcore.SetProcessDpiAwareness(1)  # Fix blurriness for high-DPI displays on Windows
 
 if sys.platform == 'darwin':
-    lospec.BTN_TXT_C = '#000'
-
+    lospec.BTN_TXT_C = '#000'  # OSX can't handle colored buttons, so white text would be illegible;
+                               # use black text instead
 
 def do_palettize(palette, image, *args, **kwargs):
 
@@ -36,11 +36,15 @@ def do_palettize(palette, image, *args, **kwargs):
     if len(image.shape) == 2:
         image = image[..., np.newaxis].repeat(3, axis=2)
 
+    # For if alpha data is included
+    image = image[..., :3]
+
     return palettizer.palettize(palette, image, *args, **kwargs)
 
 
+#!# COMMENT: Convoluted; time to add commentary
 THUMBNAIL_SIZE = (610, 610)
-def image_popup(image):
+def image_popup(image, palette_len=None):
     temp_img = Image.fromarray(image)
     w, h = temp_img.size
 
@@ -64,10 +68,18 @@ def image_popup(image):
         if event == 'Save':
             writefile = values['file']
             try:
-                if '.' in writefile and writefile.split('.')[-1] in EXT_LIST:
-                    imwrite(writefile, image)
+                if '.' in writefile:
+                    ext = writefile.split('.')[-1].casefold()
+                if ext in EXT_LIST:
+                    try:
+                        imwrite(writefile, image, quantize=palette_len)  # only works for PNGs right now
+                    except:
+                        imwrite(writefile, image)
                 else:
-                    imwrite(writefile + '.png', image)
+                    try:
+                        imwrite(writefile + '.png', image, quantize=palette_len)
+                    except:
+                        imwrite(writefile + '.png', image)
                 break
             except Exception as e:
                 error_popup(e, 'Error saving image: ')
@@ -77,7 +89,7 @@ def image_popup(image):
 
 
 ################################################################################
-# TODO: Commentary
+#!# COMMENT: Time to add comments to this section
 
 if __name__ == '__main__':
     # Necessary for Windows bundles
@@ -176,7 +188,7 @@ if __name__ == '__main__':
                     image = None
                 else:
                     try:
-                        image_popup(output_image)
+                        image_popup(output_image, len(palette))
                     except Exception as e:
                         error_popup(e)
 

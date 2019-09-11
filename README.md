@@ -1,6 +1,6 @@
 ![icon](https://github.com/PureAsbestos/Image-palettizer/blob/master/data/icon.ico)
 # Image Palettizer
-![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![version](https://img.shields.io/badge/version-3.1.0--dev-mediumpurple.svg)
+![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![version](https://img.shields.io/badge/version-3.2.2--dev-mediumpurple)
 
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
 
@@ -18,7 +18,7 @@ Or, on Windows 64-bit, there are no additional requirements when using the execu
 ## Installation
 If you want to run from source, just download the the source from releases and unzip it (recommended), or clone with `git clone https://github.com/PureAsbestos/Image-palettizer.git`. Then install dependencies like this: `pip3 install -r requirements.txt`. Run `main.py` to get started.
 
-To run from executable on Windows 64-bit, simply download the executable from releases, or, for slightly faster startup times, use the portable installation.
+To run from executable on Windows 64-bit, simply download the single-executable version from releases, or, for slightly faster startup times, use the portable installation.
 
 ## Usage
 To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py (or the executable), you’ll have some options on screen, allowing you to select specifically what you want to do (dithering, etc.). You can click the `Browse` buttons to provide paths for the palette and image (it's worth noting that the image location can be a URL). You can also click the `Get palette from Lospec` button to quickly grab a palette from [Lospec's excellent palette list](https://lospec.com/palette-list). When you are ready to begin, click `Apply`. You should see some loading bars, and then a preview window will pop up, allowing you to save your image (Note that the preview image may be of reduced quality, but this will not affect the final output). Click `Save As...` to choose where to save the file (and what to call it), then click `Save` to save it. See *Features* for specific capabilities.

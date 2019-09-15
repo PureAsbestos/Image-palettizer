@@ -29,12 +29,12 @@ Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/p
 <br><br><br>
 
 ![Mandrill original vs. Aseprite](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-aseprite-compare.png)
-On the left: original image
+On the left: original image <br>
 On the right: image palettized with Aseprite ([Endesga 32 palette](https://lospec.com/palette-list/endesga-32), Bayer 2x2)
 <br><br>
 
 ![Mandrill original vs. Image Palettizer](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-imagepalettizer-compare.png)
-On the left: original image
+On the left: original image <br>
 On the right: image palettized with Image Palettizer ([Endesga 32 palette](https://lospec.com/palette-list/endesga-32), Bayer 2x2)
 <br><br>
 

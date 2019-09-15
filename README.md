@@ -23,12 +23,21 @@ To run from executable on Windows 64-bit, simply download the single-executable 
 ## Usage
 To begin, you’ll need two things: a palette in .gpl format, and an image (png, jpeg, etc.) When you run main.py (or the executable), you’ll have some options on screen, allowing you to select specifically what you want to do (dithering, etc.). You can click the `Browse` buttons to provide paths for the palette and image (it's worth noting that the image location can be a URL). You can also click the `Get palette from Lospec` button to quickly grab a palette from [Lospec's excellent palette list](https://lospec.com/palette-list). When you are ready to begin, click `Apply`. You should see some loading bars, and then a preview window will pop up, allowing you to save your image (Note that the preview image may be of reduced quality, but this will not affect the final output). Click `Save As...` to choose where to save the file (and what to call it), then click `Save` to save it. See *Features* for specific capabilities.
 
-### Example
-![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/mona-lisa.png)
+### Examples
+![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
 
+
+![Mandrill original vs. Aseprite](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-aseprite-compare.png)
+On the left: original image
+On the right: image palettized with Aseprite (Endesga 32, Bayer 2x2)
+
+![Mandrill original vs. ImagePalettizer](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-imagepalettizer-compare.png)
+On the left: original image
+On the right: image palettized with Image Palettizer (Endesga 32, Bayer 2x2)
+
 ### Demonstration
-![demonstration](https://github.com/PureAsbestos/Image-palettizer/blob/master/demonstration.gif)
+![demonstration](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/demonstration.gif)
 
 ## Features
 Besides the core features that have been discussed, this program offers:

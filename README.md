@@ -25,7 +25,9 @@ To begin, you’ll need two things: a palette in .gpl format, and an image (png,
 
 ### Examples
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mona-lisa.png)
-Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)\
+Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
+
+
 
 ![Mandrill original vs. Aseprite](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-aseprite-compare.png)
 On the left: original image

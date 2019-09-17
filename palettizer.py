@@ -37,7 +37,7 @@ def split_deltaE(image, color2, *args, **kwargs):
     return np.concatenate(image_output_sliced)
 
 
-def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed=1.0):
+def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed=1.0, cspace='CAM02-UCS'):
     # Repeat each channel of the image to the length of the palette
     distances_1 = np.repeat(image_input[..., 0, np.newaxis], palette.shape[0], axis=2)
     distances_2 = np.repeat(image_input[..., 1, np.newaxis], palette.shape[0], axis=2)
@@ -48,7 +48,7 @@ def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed
     del distances_1, distances_2, distances_3
 
     # Find the distance between each pixel color and every palette color
-    distances = split_deltaE(distances, palette, 'sRGB255')
+    distances = split_deltaE(distances, palette, 'sRGB255', cspace)
 
     # Find the closest palette color
     image_quantized = np.array(distances.argmin(axis=2))
@@ -90,9 +90,7 @@ def palettize(palette, image_input, dither_matrix=None, use_ordered=False, bleed
 
     else:  # Type must be no dithering (plain quantization)
         image_indexed = image_quantized
-    del image_quantized
     # Indexed to sRGB255
     image_output = index2rgb(image_indexed, palette)
-    del image_indexed
 
     return image_output

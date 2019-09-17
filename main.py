@@ -26,9 +26,6 @@ if sys.platform.startswith('win'):
     import ctypes
     ctypes.windll.shcore.SetProcessDpiAwareness(1)  # Fix blurriness for high-DPI displays on Windows
 
-if sys.platform == 'darwin':
-    lospec.BTN_TXT_C = '#000'  # OSX can't handle colored buttons, so white text would be illegible;
-                               # use black text instead
 
 def do_palettize(palette, image, *args, **kwargs):
 

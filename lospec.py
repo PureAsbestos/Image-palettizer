@@ -1,6 +1,6 @@
 import requests
 
-import os, re
+import os, sys, re
 import webbrowser
 
 import PySimpleGUI as sg
@@ -10,8 +10,14 @@ from constants import DATA_LOC
 BG_C = '#332f35'
 TXT_C = '#b3adb6'
 BTN_C = '#4d4750'
-BTN_TXT_C = '#fff'
 BOX_C = '#29252a'
+
+if sys.platform == 'darwin':
+    # OSX can't handle colored buttons, so white text would be illegible;
+    # use black text instead
+    BTN_TXT_C = '#000'
+else:
+    BTN_TXT_C = '#fff'
 
 layout = [[sg.Image(os.path.join(DATA_LOC, 'lospec.gif'), pad=((250, 0), (120, 105)), size=(332, 80), tooltip='https://lospec.com/palette-list', background_color=BG_C, enable_events=True, key='link')],
           [sg.Text('Name of palette on Lospec:', size=(22, 1), justification='right', text_color=TXT_C, background_color=BG_C),

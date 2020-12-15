@@ -17,4 +17,4 @@ EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
 
 # list of color spaces that colorspacious can correctly perform a deltaE calculation in
 CSPACE_LIST = ['CAM02-UCS', 'CAM02-LCD', 'CAM02-SCD',
-               'CIELab', 'sRGB1', 'sRGB1-linear', 'XYZ1', 'CIELCh']
+               'CIELab', 'sRGB1', 'sRGB1-linear', 'XYZ1']

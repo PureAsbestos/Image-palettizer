@@ -1,8 +1,8 @@
 ![icon](https://github.com/PureAsbestos/Image-palettizer/blob/master/data/icon.ico)
 # Image Palettizer
-![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg) ![version](https://img.shields.io/badge/version-3.2.2--dev-mediumpurple)
+![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg)
 
-A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02 UCS color space. This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
+A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02-UCS color space by default (others are available as well). This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
 
 ## Requirements
 Requires Python 3.6+ and the following packages to run from source:
@@ -26,15 +26,17 @@ To begin, you’ll need two things: a palette in .gpl format, and an image (png,
 ### Examples
 ![Mona Lisa Palettization](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mona-lisa.png)
 Palette can be found here: [Dawnbringer's 16 color palette](https://lospec.com/palette-list/dawnbringer-16)
-
+<br><br><br>
 
 ![Mandrill original vs. Aseprite](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-aseprite-compare.png)
-On the left: original image
-On the right: image palettized with Aseprite (Endesga 32, Bayer 2x2)
+On the left: original image <br>
+On the right: image palettized with Aseprite ([Endesga 32 palette](https://lospec.com/palette-list/endesga-32), Bayer 2x2)
+<br><br>
 
-![Mandrill original vs. ImagePalettizer](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-imagepalettizer-compare.png)
-On the left: original image
-On the right: image palettized with Image Palettizer (Endesga 32, Bayer 2x2)
+![Mandrill original vs. Image Palettizer](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/mandrill-imagepalettizer-compare.png)
+On the left: original image <br>
+On the right: image palettized with Image Palettizer ([Endesga 32 palette](https://lospec.com/palette-list/endesga-32), Bayer 2x2)
+<br><br>
 
 ### Demonstration
 ![demonstration](https://github.com/PureAsbestos/Image-palettizer/blob/master/readme-support/demonstration.gif)

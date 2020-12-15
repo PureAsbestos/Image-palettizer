@@ -67,6 +67,5 @@ def write_rgb(location, pal, header={'palette name': '', 'description': ''}, col
 
     lines = header_list + lines
 
-    f = open(location + header['palette name'] + '_' + str(int(time())) + '.gpl', mode='w+')
-    f.write('\n'.join(lines))
-    f.close()
+    with open(location + header['palette name'] + '_' + str(int(time())) + '.gpl', mode='w+') as f:
+        f.write('\n'.join(lines))

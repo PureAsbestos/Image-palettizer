@@ -96,6 +96,10 @@ DIFFUSION_MAPS = {
 }
 
 BAYER_PRECALC = {
+    'halftone': np.array((
+        (1, 2),
+        (2, 1)
+    )) * (1/3),
     '2': np.array((
         (0, 2),
         (3, 1)

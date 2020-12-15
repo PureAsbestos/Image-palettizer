@@ -17,7 +17,7 @@ import palettizer
 from sg_extensions import error_popup
 
 # Constants
-from constants import VERSION, DATA_LOC, EXT_LIST
+from constants import VERSION, DATA_LOC, EXT_LIST, CSPACE_LIST
 
 icon_loc = str(os.path.join(DATA_LOC, 'icon.ico'))
 sg.SetOptions(button_color=('black','#DDDDDD'), icon=icon_loc)  # Set default theme and icon
@@ -67,6 +67,8 @@ def image_popup(image, palette_len=None):
             try:
                 if '.' in writefile:
                     ext = writefile.split('.')[-1].casefold()
+                else:
+                    ext = None
                 if ext in EXT_LIST:
                     try:
                         imwrite(writefile, image, quantize=palette_len)  # only works for PNGs right now
@@ -98,6 +100,7 @@ if __name__ == '__main__':
     ordered_combo = sg.Combo(list(BAYER_PRECALC.keys()), readonly=True, disabled=True, key='ordered combo')
     diffusion_combo = sg.Combo(list(DIFFUSION_MAPS.keys()), readonly=True, disabled=True, key='diffusion combo')
     bleed_spin = sg.Spin(list(np.arange(101)/100), initial_value=1.0, key='bleed')
+    cspace_combo = sg.Combo(CSPACE_LIST, readonly=True, key='cspace combo')
 
     frame_dithering_layout = [[sg.Text('')],
                               [sg.Column([[no_dither_radio], []]), sg.Column([[ordered_radio], [ordered_combo]]),
@@ -110,6 +113,7 @@ if __name__ == '__main__':
               [sg.Text('Image', size=(15, 1), justification='right'), sg.InputText(do_not_clear=True, key='image'), sg.FileBrowse()],
               [sg.Text('')],
               [sg.Text('', size=(5, 1)), frame_dithering],
+              [sg.Text('Intermediate color space'), cspace_combo],
               [sg.Button('Apply', pad=(5, 20), bind_return_key=True)]]
 
     window = sg.Window('Image Palettizer ' + VERSION, auto_size_text=True).Layout(layout)
@@ -146,6 +150,7 @@ if __name__ == '__main__':
             palette_loc = values['palette']
             image_loc = values['image']
             use_ordered = values['ordered radio']
+            cspace = values['cspace combo']
 
             if not values['none radio']:
                 try:
@@ -178,15 +183,15 @@ if __name__ == '__main__':
                 image = None
 
             if (palette is not None) and (image is not None):
-                try:
-                    output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed)
-                except Exception as e:
-                    error_popup(e, 'Error during palettization: ')
-                    image = None
-                else:
-                    try:
-                        image_popup(output_image, len(palette))
-                    except Exception as e:
-                        error_popup(e)
+                # try:
+                output_image = do_palettize(palette, image, dither_matrix, use_ordered, bleed, cspace)
+                # except Exception as e:
+                #     error_popup(e, 'Error during palettization: ')
+                #     image = None
+                # else:
+                #     try:
+                image_popup(output_image, len(palette))
+                    # except Exception as e:
+                    #     error_popup(e)
 
     window.Close()

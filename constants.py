@@ -9,8 +9,12 @@ else :
 
 VERSION = 'v3.2.3'
 
-# List of image extensions that imageio can write to
+# list of image extensions that imageio can write to
 EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',
             'ico', 'im', 'jfif', 'jpe', 'jpg', 'jpeg', 'mpo', 'pcx',
             'png', 'pbm', 'pgm', 'ppm', 'bw', 'rgb', 'rgba', 'sgi',
             'tga', 'bsdf', 'npz']
+
+# list of color spaces that colorspacious can correctly perform a deltaE calculation in
+CSPACE_LIST = ['CAM02-UCS', 'CAM02-LCD', 'CAM02-SCD',
+               'CIELab', 'sRGB1', 'sRGB1-linear', 'XYZ1', 'CIELCh']

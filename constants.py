@@ -7,7 +7,7 @@ else :
         # running live
         DATA_LOC = os.path.join(os.path.realpath(os.path.dirname(__file__)), 'data')
 
-VERSION = 'v3.2.3'
+VERSION = 'v3.3.0'
 
 # List of image extensions that imageio can write to
 EXT_LIST = ['tif', 'tiff', 'stk', 'lsm', 'bmp', 'ps', 'eps', 'gif',

@@ -1,6 +1,8 @@
 ![icon](https://github.com/PureAsbestos/Image-palettizer/blob/master/data/icon.ico)
 # Image Palettizer
-![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/pureasbestos/image-palettizer.svg)
+![license](https://img.shields.io/github/license/pureasbestos/image-palettizer.svg) ![code size](https://img.shields.io/github/languages/code-size/PureAsbestos/Image-Palettizer)
+ ![repo size](https://img.shields.io/github/repo-size/PureAsbestos/Image-Palettizer)
+
 
 A program that applies a .gpl palette to an image by finding the nearest color in the palette for each pixel using the CIECAM02-UCS color space by default (others are available as well). This provides more accurate-to-eye results than can be achieved with a run-of-the-mill graphics editor.
 

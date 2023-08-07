@@ -701,7 +701,7 @@ class Element():
 
     def _KeyboardHandler(self, event):
         """
-        Internal callback for when a key is pressed andd return keyboard events was set for window
+        Internal callback for when a key is pressed and return keyboard events was set for window
 
         :param event: Event data passed in by tkinter (not used)
         """
@@ -793,7 +793,7 @@ class InputText(Element):
         :param text_color: (str) color of the text
         :param font: Union[str, Tuple[str, int]] specifies the font family, size, etc
         :param tooltip: (str) text, that will appear when mouse hovers over the element
-        :param change_submits: (bool) * DEPRICATED DO NOT USE! Same as enable_events
+        :param change_submits: (bool) * DEPRECATED DO NOT USE! Same as enable_events
         :param enable_events: (bool) If True then changes to this element are immediately reported as an event. Use this instead of change_submits (Default = False)
         :param do_not_clear: (bool) If False then the field will be set to blank after ANY event (button, any event) (Default = True)
         :param key:  (any)  Value that uniquely identifies this element from all other elements. Used when Finding an element or in return values. Must be unique to the window
@@ -897,7 +897,7 @@ class Combo(Element):
         :param auto_size_text: (bool) True if element should be the same size as the contents
         :param background_color: (str) color of background
         :param text_color: (str) color of the text
-        :param change_submits: (bool) DEPRICATED DO NOT USE. Use `enable_events` instead
+        :param change_submits: (bool) DEPRECATED DO NOT USE. Use `enable_events` instead
         :param enable_events: (bool) Turns on the element specific events. Combo event is when a choice is made
         :param disabled: (bool) set disable state for element
         :param key: (Any) Used with window.FindElement and with return values to uniquely identify this element
@@ -1894,7 +1894,7 @@ class TKProgressBar():
 class TKOutput(tk.Frame):
     """
     tkinter style class. Inherits Frame class from tkinter. Adds a tk.Text and a scrollbar together.
-    Note - This is NOT a user controlled class. Users should NOT be directly using it unless making an extention
+    Note - This is NOT a user controlled class. Users should NOT be directly using it unless making an extension
     to PySimpleGUI by directly manipulating tkinter.
     """
     def __init__(self, parent, width, height, bd, background_color=None, text_color=None, font=None, pad=None):
@@ -2460,7 +2460,7 @@ class ButtonMenu(Element):
 
 
 # ---------------------------------------------------------------------- #
-#                           ProgreessBar                                 #
+#                           ProgressBar                                 #
 # ---------------------------------------------------------------------- #
 class ProgressBar(Element):
     """
@@ -2653,7 +2653,7 @@ class Image(Element):
             self.CurrentFrameNumber = self.CurrentFrameNumber + 1 if self.CurrentFrameNumber + 1 < self.TotalAnimatedFrames else 0
         image = self.AnimatedFrames[self.CurrentFrameNumber]
         try:  # needed in case the window was closed with an "X"
-            self.tktext_label.configure(image=image, width=image.width(), heigh=image.height())
+            self.tktext_label.configure(image=image, width=image.width(), height=image.height())
         except:
             pass
 
@@ -2728,7 +2728,7 @@ class Graph(Element):
         :param graph_top_right: Tuple[int, int]  (x,y) The top right corner of  your coordinate system
         :param background_color: (str) background color of the drawing area
         :param pad: (int, int) or ((int, int),(int,int)) Amount of padding to put around element (left/right, top/bottom) or ((left, right), (top, bottom))
-        :param change_submits: (bool) * DEPRICATED DO NOT USE! Same as enable_events
+        :param change_submits: (bool) * DEPRECATED DO NOT USE! Same as enable_events
         :param drag_submits:  (bool) if True and Events are enabled for the Graph, will report Events any time the mouse moves while button down
         :param enable_events: (bool) If True then clicks on the Graph are immediately reported as an event. Use this instead of change_submits
         :param key:  (any)  Value that uniquely identifies this element from all other elements. Used when Finding an element or in return values. Must be unique to the window
@@ -3256,7 +3256,7 @@ class Frame(Element):
         self.BorderWidth = border_width
         self.BackgroundColor = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
         self.RightClickMenu = right_click_menu
-        self.ContainerElemementNumber = Window.GetAContainerNumber()
+        self.ContainerElementNumber = Window.GetAContainerNumber()
 
         self.Layout(layout)
 
@@ -3351,7 +3351,7 @@ class VerticalSeparator(Element):
         super().__del__()
 
 
-VSeperator = VerticalSeparator
+VSeparator = VerticalSeparator
 VSep = VerticalSeparator
 
 
@@ -3396,7 +3396,7 @@ class Tab(Element):
         self.TabID = None
         self.BackgroundColor = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
         self.RightClickMenu = right_click_menu
-        self.ContainerElemementNumber = Window.GetAContainerNumber()
+        self.ContainerElementNumber = Window.GetAContainerNumber()
 
         self.Layout(layout)
 
@@ -3473,7 +3473,7 @@ class Tab(Element):
         Create a tkinter event that mimics user clicking on a tab. Must have called window.Finalize / Read first!
 
         """
-        # Use a try in case the window has been destoyed
+        # Use a try in case the window has been destroyed
         try:
             self.ParentNotebook.select(self.TabID)
         except Exception as e:
@@ -3506,7 +3506,7 @@ class TabGroup(Element):
         :param selected_title_color: (str) color of tab when it is selected
         :param background_color: (str) color of background of tabs
         :param font: Union[str, Tuple[str, int]] specifies the font family, size, etc
-        :param change_submits: (bool) * DEPRICATED DO NOT USE! Same as enable_events
+        :param change_submits: (bool) * DEPRECATED DO NOT USE! Same as enable_events
         :param enable_events: (bool) If True then switching tabs will generate an Event
         :param pad: (int, int) or ((int, int),(int,int)) Amount of padding to put around element (left/right, top/bottom) or ((left, right), (top, bottom))
         :param border_width: (int)  width of border around element in pixels
@@ -3678,7 +3678,7 @@ class Slider(Element):
                         RELIEF_RIDGE
                         RELIEF_GROOVE
                         RELIEF_SOLID
-        :param change_submits: (bool) * DEPRICATED DO NOT USE! Same as enable_events
+        :param change_submits: (bool) * DEPRECATED DO NOT USE! Same as enable_events
         :param enable_events: (bool) If True then moving the slider will generate an Event
         :param disabled: (bool) set disable state for element
         :param size: Tuple[int, int] (width in characters, height in rows)
@@ -3933,7 +3933,7 @@ class Column(Element):
         self.VerticalScrollOnly = vertical_scroll_only
         self.RightClickMenu = right_click_menu
         bg = background_color if background_color is not None else DEFAULT_BACKGROUND_COLOR
-        self.ContainerElemementNumber = Window.GetAContainerNumber()
+        self.ContainerElementNumber = Window.GetAContainerNumber()
 
         self.Layout(layout)
 
@@ -4113,7 +4113,7 @@ class TKCalendar(ttk.Frame):
         """
         self._TargetElement = target_element
         default_mon, default_day, default_year = default_date
-        # remove custom options from kw before initializating ttk.Frame
+        # remove custom options from kw before initializing ttk.Frame
         fwday = kw.pop('firstweekday', calendar.MONDAY)
         year = kw.pop('year', default_year or self.datetime.now().year)
         month = kw.pop('month', default_mon or self.datetime.now().month)
@@ -4331,7 +4331,7 @@ class TKCalendar(ttk.Frame):
 
         self._date = self._date - self.timedelta(days=1)
         self._date = self.datetime(self._date.year, self._date.month, 1)
-        self._build_calendar()  # reconstuct calendar
+        self._build_calendar()  # reconstruct calendar
 
     def _next_month(self):
         """Update calendar to show the next month."""
@@ -4365,7 +4365,7 @@ class Menu(Element):
     Is a List of -  "Item String" + List
     Where Item String is what will be displayed on the Menubar itself.
     The List that follows the item represents the items that are shown then Menu item is clicked
-    Notice how an "entry" in a mennu can be a list which means it branches out and shows another menu, etc. (resursive)
+    Notice how an "entry" in a mennu can be a list which means it branches out and shows another menu, etc. (recursive)
     menu_def = [['&File', ['!&Open', '&Save::savekey', '---', '&Properties', 'E&xit']],
                 ['!&Edit', ['!&Paste', ['Special', 'Normal', ], 'Undo'], ],
                 ['&Debugger', ['Popout', 'Launch Debugger']],
@@ -4382,7 +4382,7 @@ class Menu(Element):
         :param menu_definition: List[List[Tuple[str, List[str]]]
         :param background_color: (str) color of the background
         :param size: Tuple[int, int]  Not used in the tkinter port
-        :param tearoff: (bool) if True, then can tear the menu off from the window ans use as a floating window. Very cool effect
+        :param tearoff: (bool) if True, then can tear the menu off from the window and use as a floating window. Very cool effect
         :param pad: (int, int) or ((int, int),(int,int)) Amount of padding to put around element (left/right, top/bottom) or ((left, right), (top, bottom))
         :param key:  (any)  Value that uniquely identifies this element from all other elements. Used when Finding an element or in return values. Must be unique to the window
         :param visible: (bool) set visibility state of the element
@@ -4761,7 +4761,7 @@ class Tree(Element):
         :param values: (TreeData) Representation of the tree
         :param key: (Any) identifies a particular item in tree to update
         :param value: (Any) sets the node identified by key to a particular value
-        :param text:  (str) sets the node identified by ket to this string
+        :param text:  (str) sets the node identified by key to this string
         :param icon: Union[bytes, str] can be either a base64 icon or a filename for the icon
         :param visible: (bool) control visibility of element
         """
@@ -4988,7 +4988,7 @@ class Window:
         :param auto_close_duration: (int) Number of seconds to wait before closing the window
         :param icon: Union[str, str] Can be either a filename or Base64 value.
         :param force_toplevel: (bool) If True will cause this window to skip the normal use of a hidden master window
-        :param alpha_channel: (float) Sets the opacity of the window. 0 = invisible 1 = completely visible. Values bewteen 0 & 1 will produce semi-transparent windows in SOME environments (The Raspberry Pi always has this value at 1 and cannot change.
+        :param alpha_channel: (float) Sets the opacity of the window. 0 = invisible 1 = completely visible. Values between 0 & 1 will produce semi-transparent windows in SOME environments (The Raspberry Pi always has this value at 1 and cannot change.
         :param return_keyboard_events: (bool) if True key presses on the keyboard will be returned as Events from Read calls
         :param use_default_focus: (bool) If True will use the default focus algorithm to set the focus to the "Correct" element
         :param text_justification: (str) Union ['left', 'right', 'center'] Default text justification for all Text Elements in window
@@ -5057,7 +5057,7 @@ class Window:
         self.ElementPadding = element_padding or DEFAULT_ELEMENT_PADDING
         self.RightClickMenu = right_click_menu
         self.Margins = margins if margins != (None, None) else DEFAULT_MARGINS
-        self.ContainerElemementNumber = Window.GetAContainerNumber()
+        self.ContainerElementNumber = Window.GetAContainerNumber()
         self.AllKeysDict = {}
         self.TransparentColor = transparent_color
         self.UniqueKeyCounter = 0
@@ -5530,7 +5530,7 @@ class Window:
         Find element object associated with the provided key.  This call can be abbreviated to any of these:
         FindElement == Element == Find
         So take your pick as to how much typing you want to do.
-        Rememeber that this call will return None if no match is found which may cause your code to crash if not
+        Remember that this call will return None if no match is found which may cause your code to crash if not
         checked for.
 
         :param key: (Any) Used with window.FindElement and with return values to uniquely identify this element
@@ -5579,7 +5579,7 @@ class Window:
     def _BuildKeyDictForWindow(self, top_window, window, key_dict):
         """
         Loop through all Rows and all Container Elements for this window and create the keys for all of them.
-        Note that the calls are recursive as all pathes must be walked
+        Note that the calls are recursive as all paths must be walked
 
         :param top_window: (Window) The highest level of the window
         :param window: Union[Column, Frame, TabGroup, Pane, Tab] The "sub-window" (container element) to be searched
@@ -5907,7 +5907,7 @@ class Window:
     def AlphaChannel(self, alpha):
         """
         The setter method for this "property".
-        Planning on depricating so that a Set call is always used by users. This is more in line with the SDK
+        Planning on deprecating so that a Set call is always used by users. This is more in line with the SDK
         :param alpha: (float) 0 to 1. 0 is completely transparent.  1 is completely visible and solid (can't see through)
         """
         self._AlphaChannel = alpha
@@ -5959,7 +5959,7 @@ class Window:
 
     def VisibilityChanged(self):
         """
-        Not used in tkinter, but supplied becuase it is used in Qt. Want to remain source code compatible
+        Not used in tkinter, but supplied because it is used in Qt. Want to remain source code compatible
         """
         # A dummy function.  Needed in Qt but not tkinter
         return
@@ -6910,7 +6910,7 @@ def _BuildResultsForSubform(form, initialize_only, top_level_form):
                     value = (value != 0)
                 elif element.Type == ELEM_TYPE_INPUT_RADIO:
                     RadVar = element.TKIntVar.get()
-                    this_rowcol = EncodeRadioRowCol(form.ContainerElemementNumber, row_num, col_num)
+                    this_rowcol = EncodeRadioRowCol(form.ContainerElementNumber, row_num, col_num)
                     # this_rowcol = element.EncodedRadioValue       # could use the saved one
                     value = RadVar == this_rowcol
                 elif element.Type == ELEM_TYPE_BUTTON:
@@ -7271,7 +7271,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
             else:
                 font = DEFAULT_FONT
             # -------  Determine Auto-Size setting on a cascading basis ------- #
-            if element.AutoSizeText is not None:  # if element overide
+            if element.AutoSizeText is not None:  # if element override
                 auto_size_text = element.AutoSizeText
             elif toplevel_form.AutoSizeText is not None:  # if form override
                 auto_size_text = toplevel_form.AutoSizeText
@@ -7889,7 +7889,7 @@ def PackFormIntoFrame(form, containing_frame, toplevel_form):
                 default_value = element.InitialState
                 ID = element.GroupID
                 # see if ID has already been placed
-                value = EncodeRadioRowCol(form.ContainerElemementNumber, row_num,
+                value = EncodeRadioRowCol(form.ContainerElementNumber, row_num,
                                           col_num)  # value to set intvar to if this radio is selected
                 element.EncodedRadioValue = value
                 if ID in toplevel_form.RadioDict:
@@ -8735,7 +8735,7 @@ class QuickMeter(object):
                  button_color=(None, None), size=DEFAULT_PROGRESS_BAR_SIZE, border_width=None, grab_anywhere=False):
         """
 
-        :param title: text to display in eleemnt
+        :param title: text to display in element
         :param current_value: current value
         :param max_value: max value of QuickMeter
         :param key:  Used with window.FindElement and with return values to uniquely identify this element
@@ -8902,7 +8902,7 @@ def GetComplimentaryHex(color):
     # convert the string into hex
     color = int(color, 16)
     # invert the three bytes
-    # as good as substracting each of RGB component by 255(FF)
+    # as good as subtracting each of RGB component by 255(FF)
     comp_color = 0xFFFFFF ^ color
     # convert the color back to hex by prefixing a #
     comp_color = "#%06X" % comp_color
@@ -8967,7 +8967,7 @@ class DebugWin():
         sepchar = sep if sep is not None else ' '
         endchar = end if end is not None else '\n'
 
-        if self.window is None:  # if window was destroyed alread re-open it
+        if self.window is None:  # if window was destroyed already re-open it
             self.__init__(size=self.size, location=self.location, font=self.font, no_titlebar=self.no_titlebar,
                           no_button=self.no_button, grab_anywhere=self.grab_anywhere, keep_on_top=self.keep_on_top,
                           do_not_reroute_stdout=self.do_not_reroute_stdout)
@@ -9681,7 +9681,7 @@ def Popup(*args, title=None, button_color=None, background_color=None, text_colo
         PopupButton = DummyButton  # important to use or else button will close other windows too!
     else:
         PopupButton = CloseButton
-    # show either an OK or Yes/No depending on paramater
+    # show either an OK or Yes/No depending on parameter
     if custom_text != (None, None):
         if type(custom_text) is not tuple:
             window.AddRow(PopupButton(custom_text, size=(len(custom_text), 1), button_color=button_color, focus=True,
@@ -9780,7 +9780,7 @@ def PopupScrolled(*args,  title=None, button_color=None, yes_no=False, auto_clos
         height_computed = height
     window.AddRow(Multiline(complete_output, size=(max_line_width, height_computed)))
     pad = max_line_total - 15 if max_line_total > 15 else 1
-    # show either an OK or Yes/No depending on paramater
+    # show either an OK or Yes/No depending on parameter
     button = DummyButton if non_blocking else CloseButton
     if yes_no:
         window.AddRow(Text('', size=(pad, 1), auto_size_text=False), button('Yes'), button('No'))
